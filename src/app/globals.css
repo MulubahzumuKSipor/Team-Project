@@ -1,9 +1,9 @@
 :root {
-  --color-primary: #6D4C41;   /* Rich Brown */
-  --color-secondary: #D4A373; /* Warm Sand */
-  --color-accent: #FFB703;    /* Golden Amber */
-  --color-light: #F8F5F0;     /* Off-White */
-  --color-dark: #333333;      /* Charcoal */
+  --color-primary: #1E3A8A;   /* Deep Blue */
+  --color-secondary: #3B82F6; /* Bright Blue */
+  --color-accent: #60A5FA;    /* Light Blue */
+  --color-light: #F3F4F6;     /* Light Gray */
+  --color-dark: #111827;      /* Almost Black */
 
   --background: var(--color-light);
   --foreground: var(--color-dark);
@@ -12,8 +12,8 @@
 /* Dark mode preference */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0A0A0A;  /* Black */
+    --foreground: #E5E7EB;  /* Light Gray */
   }
 }
 
@@ -33,9 +33,18 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'Playfair Display', serif;
+  color: default;
+}
+
+h4{
+  color: var(--color-dark);
 }
 
 a {
-  color: inherit;
+  color: var(--color-secondary);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
 }

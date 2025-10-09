@@ -1,0 +1,15 @@
+export function ProductDetail({ product }){
+    return (
+    <div>
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+    </div>
+  );
+}
+
+ProductDetail.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }),
+}

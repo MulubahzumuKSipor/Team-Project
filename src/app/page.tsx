@@ -42,23 +42,25 @@ export default function Home() {
         <p className={styles.sectionSubtitle}>
           Our best picks, crafted with love and care
         </p>
-        <div className={styles.productGrid}>
-          {[45, 55, 30, 20].map((price, i) => (
-            <div key={i} className={styles.productCard}>
-              <div
-                style={{
-                  height: "150px",
-                  background: "#eee",
-                  borderRadius: "8px",
-                  marginBottom: "1rem",
-                }}
-              />
-              <h4>Product Title</h4>
-              <p>${price}.00</p>
-              <button className={styles.buttonPrimary}>Add to Cart</button>
-            </div>
-          ))}
-        </div>
+        <a href="/productsInfo">
+          <div className={styles.productGrid}>
+            {[45, 55, 30, 20].map((price, i) => (
+              <div key={i} className={styles.productCard}>
+                <div
+                  style={{
+                    height: "150px",
+                    background: "#eee",
+                    borderRadius: "8px",
+                    marginBottom: "1rem",
+                  }}
+                />
+                <h4>Product Title</h4>
+                <p className={styles.productPrice}>${price}.00</p>
+                <button className={styles.buttonPrimary}>Add to Cart</button>
+              </div>
+            ))}
+          </div>
+        </a>
       </main>
 
       {/* Footer */}
