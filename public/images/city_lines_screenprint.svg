@@ -1,0 +1,92 @@
+<svg viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background texture -->
+  <defs>
+    <pattern id="paper" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="#f8f5ed"/>
+      <circle cx="20" cy="30" r="0.5" fill="#e5dcc8" opacity="0.3"/>
+      <circle cx="60" cy="70" r="0.5" fill="#e5dcc8" opacity="0.3"/>
+      <circle cx="40" cy="90" r="0.5" fill="#e5dcc8" opacity="0.3"/>
+    </pattern>
+    
+    <filter id="screenprint">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 0 0 1"/>
+      </feComponentTransfer>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  
+  <!-- Paper background -->
+  <rect width="800" height="1000" fill="url(#paper)"/>
+  
+  <!-- City skyline layers - multiple colors like screenprint -->
+  
+  <!-- Back layer - light blue -->
+  <g opacity="0.85" fill="#5b9aad">
+    <rect x="520" y="450" width="60" height="300"/>
+    <rect x="640" y="380" width="80" height="370"/>
+    <rect x="200" y="500" width="50" height="250"/>
+  </g>
+  
+  <!-- Middle layer - darker blue -->
+  <g opacity="0.9" fill="#2d5a6b">
+    <rect x="100" y="420" width="70" height="330"/>
+    <rect x="280" y="350" width="90" height="400"/>
+    <rect x="450" y="300" width="65" height="450"/>
+    <rect x="590" y="460" width="45" height="290"/>
+    <rect x="720" y="520" width="55" height="230"/>
+  </g>
+  
+  <!-- Front layer - orange/rust -->
+  <g opacity="0.95" fill="#d97543">
+    <rect x="50" y="550" width="45" height="200"/>
+    <rect x="175" y="480" width="80" height="270"/>
+    <rect x="370" y="400" width="75" height="350"/>
+    <rect x="520" y="350" width="60" height="400"/>
+    <rect x="680" y="430" width="70" height="320"/>
+  </g>
+  
+  <!-- Foreground dark layer - deep teal -->
+  <g fill="#1a3842">
+    <rect x="0" y="600" width="60" height="150"/>
+    <rect x="130" y="580" width="40" height="170"/>
+    <rect x="255" y="520" width="50" height="230"/>
+    <rect x="405" y="550" width="35" height="200"/>
+    <rect x="600" y="570" width="55" height="180"/>
+    <rect x="740" y="610" width="60" height="140"/>
+  </g>
+  
+  <!-- Horizon line -->
+  <line x1="0" y1="750" x2="800" y2="750" stroke="#1a3842" stroke-width="3"/>
+  
+  <!-- Power/telephone lines across the city -->
+  <g stroke="#1a3842" stroke-width="2" fill="none">
+    <line x1="0" y1="280" x2="800" y2="320"/>
+    <line x1="0" y1="340" x2="800" y2="380"/>
+    <line x1="0" y1="420" x2="800" y2="450"/>
+  </g>
+  
+  <!-- Utility poles -->
+  <g fill="#1a3842">
+    <rect x="148" y="280" width="4" height="300"/>
+    <rect x="398" y="295" width="4" height="285"/>
+    <rect x="648" y="310" width="4" height="270"/>
+  </g>
+  
+  <!-- Sky elements - birds -->
+  <g fill="#2d5a6b">
+    <path d="M 200 180 Q 205 175 210 180" stroke="#2d5a6b" stroke-width="2" fill="none"/>
+    <path d="M 220 180 Q 225 175 230 180" stroke="#2d5a6b" stroke-width="2" fill="none"/>
+    
+    <path d="M 550 220 Q 555 215 560 220" stroke="#2d5a6b" stroke-width="2" fill="none"/>
+    
+    <path d="M 350 150 Q 355 145 360 150" stroke="#2d5a6b" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Print info at bottom -->
+  <text x="50" y="920" font-family="Courier New, monospace" font-size="16" fill="#1a3842">CITY LINES</text>
+  <text x="50" y="950" font-family="Courier New, monospace" font-size="12" fill="#2d5a6b">Limited Edition — 15/50</text>
+  <text x="650" y="950" font-family="Courier New, monospace" font-size="12" fill="#2d5a6b">2025</text>
+</svg>

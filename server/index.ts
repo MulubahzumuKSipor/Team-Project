@@ -9,7 +9,7 @@ app.use(express.json());
 // Routes Here
 app.get('/users', async (req, res) => {
     try{
-        const result = await pool.query('SELECT * FROM users');
+        const result = await pool.query('SELECT * FROM users_sellers');
         res.json(result.rows);
     }catch(err){
         console.error(err);
@@ -27,10 +27,27 @@ app.post('/users', async (req: express.Request, res: express.Response) => {
         const birthDate = body.birthDate ? `'${body.birthDate}'` : 'NULL';
 
         const text = `
-        INSERT INTO users(first_name, last_name, maiden_name, gender, email, phone, image, company) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+        INSERT INTO users_sellers(email, user_data, shop_name) VALUES ($1, $2, jsonb_build_object(
+            'firstName', $3, 
+            'lastName', $4,
+            'gender', $6,
+            'phone', $7,
+            'image', $8,
+            'company', jsonb_build_object(
+                'name', $9)
+            )) RETURNING *`;
 
-        const values = [body.first_name, body.last_name, body.maiden_name, body.gender, body.email, body.phone, body.image, body.company];
-        
+        const values = [
+            body.email,
+            body.shop_name || null,
+            body.firstName || null,
+            body.lastName || null,
+            body.gender || null,
+            body.phone || null,
+            body.image || null,
+            body.company?.name || null
+        ];
+
         const result = await pool.query(text, values);
         return res.status(201).json(result.rows[0]);
     } catch (err: any) {
@@ -43,8 +60,57 @@ app.post('/users', async (req: express.Request, res: express.Response) => {
     }
 })
 
+app.get('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).send('User not found');
+        }   
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+})
+
+app.get('/sellers', async (req, res) => {
+    try{
+        const result = await pool.query('SELECT * FROM sellers');
+        res.json(result.rows);
+    }catch(err){
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
+app.get('/sellers/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM sellers WHERE seller_id = $1', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).send('Seller not found');
+        }
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
+app.get('/userstory', async (req, res) => {
+    try{
+        const result = await pool.query('SELECT * FROM customs');
+        res.json(result.rows);
+    }catch(err){
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });
+
 
 export default app;

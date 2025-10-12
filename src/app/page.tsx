@@ -1,7 +1,33 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { getData, getUserById, } from "./lib/data";
 
-export default function Home() {
+
+// Define TypeScript interfaces for data
+interface Seller {
+  id: number;
+  shop_name: string;
+  // category?: string; // Uncomment if you plan to use it later
+}
+
+interface UserData {
+  id: number;
+  shop_name: string;
+  jsonb: {
+    image: string;
+  };
+  user_data: {
+    firstName: string;
+    lastName: string;
+    image: string;
+  };
+}
+
+
+export default async function Home() {
+  const data = await getData();
+  
+  
   return (
     <div>
       {/* Header */}
@@ -44,8 +70,8 @@ export default function Home() {
         </p>
         <a href="/productsInfo">
           <div className={styles.productGrid}>
-            {[45, 55, 30, 20].map((price, i) => (
-              <div key={i} className={styles.productCard}>
+            {data && data.length > 0 ? data.map((user) => (
+              <div key={user.id} className={styles.productCard}>
                 <div
                   style={{
                     height: "150px",
@@ -54,11 +80,12 @@ export default function Home() {
                     marginBottom: "1rem",
                   }}
                 />
-                <h4>Product Title</h4>
-                <p className={styles.productPrice}>${price}.00</p>
+                <h4>{user.shop_name}</h4>
                 <button className={styles.buttonPrimary}>Add to Cart</button>
               </div>
-            ))}
+            )):(
+              <p>Loading products...</p>
+            )}
           </div>
         </a>
       </main>

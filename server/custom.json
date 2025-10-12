@@ -1,0 +1,200 @@
+[
+  {
+    "userId": 1,
+    "name": "Emily Johnson",
+    "artStory": "Emily discovered watercolor painting during a difficult period in her life when she needed a creative outlet. What started as therapeutic sessions in her apartment quickly evolved into a passion. She was captivated by the way water and pigment danced together, creating unexpected patterns and soft transitions. After years of practice and encouragement from friends, she opened Emily's Studio to share her serene landscapes and offer custom framing services to fellow art lovers.",
+    "featuredProduct": {
+      "productId": "s1-p1",
+      "title": "Quiet Dawn — Original Watercolor",
+      "price": 145.0,
+      "artType": "Watercolor Painting"
+    }
+  },
+  {
+    "userId": 2,
+    "name": "Michael Williams",
+    "artStory": "Growing up in an industrial neighborhood, Michael was surrounded by discarded materials and urban decay. Instead of seeing waste, he saw possibility. His fascination with repurposing led him to study sculpture, where he learned to transform steel scraps, old wire, and reclaimed wood into thought-provoking pieces. His work speaks to the beauty hidden in overlooked spaces and the stories that forgotten objects can tell when given new life.",
+    "featuredProduct": {
+      "productId": "s2-p1",
+      "title": "Urban Relic — Mixed Media Sculpture",
+      "price": 320.0,
+      "artType": "Mixed Media Sculpture"
+    }
+  },
+  {
+    "userId": 3,
+    "name": "Sophia Brown",
+    "artStory": "Sophia's love for art began in childhood, sketching everything she saw in worn notebooks. After studying fine arts in college, she fell in love with acrylics for their vibrant colors and versatility. Her contemporary style blends abstract elements with recognizable forms, creating pieces that feel both familiar and mysterious. She started taking commissions after friends kept requesting portraits, and now balances original work with custom pieces that capture the essence of her subjects.",
+    "featuredProduct": {
+      "productId": "s3-p2",
+      "title": "Portrait Commission — Digital Sketch",
+      "price": 75.0,
+      "artType": "Digital Portrait Art"
+    }
+  },
+  {
+    "userId": 4,
+    "name": "James Davis",
+    "artStory": "James's journey into art started with graphic design work for local businesses, but he felt constrained by digital tools alone. When he discovered screenprinting, everything changed. The tactile process of pulling ink through screens, the slight imperfections that made each print unique, and the bold, graphic results resonated with his aesthetic vision. He now creates limited-edition prints that blend his design background with traditional printing techniques, celebrating urban landscapes and minimalist compositions.",
+    "featuredProduct": {
+      "productId": "s4-p1",
+      "title": "City Lines — Screenprint (limited)",
+      "price": 95.0,
+      "artType": "Screenprint Art"
+    }
+  },
+  {
+    "userId": 5,
+    "name": "Emma Miller",
+    "artStory": "Emma took her first pottery class on a whim after a stressful corporate job left her feeling disconnected. The moment her hands touched wet clay on the spinning wheel, she knew she'd found her calling. She quit her job six months later to pursue ceramics full-time. Her work focuses on functional pieces that bring joy to everyday rituals—morning coffee, tending plants, sharing meals. Each piece is shaped with intention and glazed in earthy, soothing tones that reflect her love of nature.",
+    "featuredProduct": {
+      "productId": "s5-p1",
+      "title": "Glazed Planter — Meadow Small",
+      "price": 28.0,
+      "artType": "Ceramic Art"
+    }
+  },
+  {
+    "userId": 6,
+    "name": "Olivia Wilson",
+    "artStory": "Olivia grew up doodling in the margins of her school notebooks, creating characters and worlds that existed only in her imagination. She studied illustration in university and fell in love with digital art, appreciating how it allowed endless experimentation without waste. Her playful, whimsical style found an audience on social media, and she began creating stickers, prints, and custom portraits. Her work celebrates small joys—botanical details, quirky characters, and colorful scenes that make people smile.",
+    "featuredProduct": {
+      "productId": "s6-p3",
+      "title": "Custom Portrait — Digital",
+      "price": 55.0,
+      "artType": "Digital Illustration"
+    }
+  },
+  {
+    "userId": 7,
+    "name": "Alexander Jones",
+    "artStory": "Alexander's fascination with light and landscape began during childhood summers spent at his grandparents' coastal cottage. He would watch the way sunlight changed the appearance of the sea throughout the day, memorizing colors and moods. After formal training in classical oil painting techniques, he dedicated his career to capturing these ephemeral moments—the quiet stillness of dawn, the golden hour before sunset. His large-scale landscapes invite viewers to pause and experience the meditative beauty of natural spaces.",
+    "featuredProduct": {
+      "productId": "s7-p1",
+      "title": "Coastal Quiet — Oil on Canvas",
+      "price": 640.0,
+      "artType": "Oil Painting"
+    }
+  },
+  {
+    "userId": 8,
+    "name": "Ava Taylor",
+    "artStory": "Ava's creative path was shaped by her passion for travel and minimalist design. After backpacking through Europe and photographing architectural details and coastal towns, she wanted to capture the essence of places in simplified, stylized forms. She taught herself graphic design and began creating travel posters with clean lines and limited color palettes. Her work evokes nostalgia and wanderlust, perfect for those who want to bring the spirit of adventure into their homes.",
+    "featuredProduct": {
+      "productId": "s8-p1",
+      "title": "Minimal Travel Poster — Series",
+      "price": 24.0,
+      "artType": "Graphic Design / Poster Art"
+    }
+  },
+  {
+    "userId": 9,
+    "name": "Ethan Martinez",
+    "artStory": "Ethan's relationship with art is deeply rooted in nostalgia and memory. He started creating collages as a teenager, cutting up old magazines and family photographs to tell visual stories. This evolved into an interest in bookbinding and paper crafts. He loves the tactile quality of handmade journals and the personal nature of collage art—each piece feels like capturing a moment or emotion. His work celebrates the beauty of analog creativity in an increasingly digital world.",
+    "featuredProduct": {
+      "productId": "s9-p3",
+      "title": "Original Collage — 'Urban Memory'",
+      "price": 85.0,
+      "artType": "Collage Art"
+    }
+  },
+  {
+    "userId": 10,
+    "name": "Isabella Anderson",
+    "artStory": "Isabella discovered photography while documenting her grandmother's coastal hometown before it changed forever. With an old film camera inherited from her father, she learned to see light, composition, and decisive moments. Her work evolved from documentary to fine art, focusing on atmospheric landscapes and urban scenes that feel timeless. She prints her work using archival methods, ensuring each piece maintains its depth and detail for generations. Her gallery represents her commitment to photography as a fine art medium.",
+    "featuredProduct": {
+      "productId": "s10-p1",
+      "title": "Harbor Light — Photographic Print (limited)",
+      "price": 220.0,
+      "artType": "Fine Art Photography"
+    }
+  },
+  {
+    "userId": 11,
+    "name": "Liam Garcia",
+    "artStory": "Liam's fascination with typography began when he was a teenager designing flyers for local bands. He became obsessed with letterforms—how the weight, spacing, and style of text could convey emotion and meaning. After studying graphic design, he focused on creating typographic art that stripped away everything except the essential message. His minimalist posters celebrate the beauty of words themselves, making language a visual experience. He also creates tools for other designers to bring their own visions to life.",
+    "featuredProduct": {
+      "productId": "s11-p2",
+      "title": "Brand Mockup Pack (digital)",
+      "price": 49.0,
+      "artType": "Typography / Graphic Design"
+    }
+  },
+  {
+    "userId": 12,
+    "name": "Mia Rodriguez",
+    "artStory": "Mia's art emerged from her vivid dreams and active imagination. As a child, she filled sketchbooks with fantastical creatures and impossible landscapes. Digital tools allowed her to bring these surreal visions to life with limitless colors and layers. Her dreamlike compositions blend reality with fantasy, creating worlds that feel both alien and familiar. She expanded into print-on-demand to make her art accessible, believing that everyone deserves to surround themselves with images that spark wonder and creativity.",
+    "featuredProduct": {
+      "productId": "s12-p1",
+      "title": "Dreamscape — Art Print",
+      "price": 48.0,
+      "artType": "Surreal Digital Art"
+    }
+  },
+  {
+    "userId": 13,
+    "name": "Noah Hernandez",
+    "artStory": "Noah found his artistic voice wandering city streets at night with his camera. He was drawn to the gritty beauty of urban environments—neon reflections on wet pavement, empty subway platforms, the geometry of architecture. His experimental approach combines traditional photography with alternative printing processes and self-publishing. He creates zines that feel personal and raw, like visual journals of urban exploration. His work captures the melancholy and mystery of cities after dark.",
+    "featuredProduct": {
+      "productId": "s13-p2",
+      "title": "Zine: City Fragments (issue #1)",
+      "price": 9.0,
+      "artType": "Experimental Photography / Zine"
+    }
+  },
+  {
+    "userId": 14,
+    "name": "Charlotte Lopez",
+    "artStory": "Charlotte's journey into textile art began with her grandmother, who taught her to weave on a traditional loom. She was captivated by the meditative rhythm of weaving and the transformation of individual threads into cohesive patterns. After studying textile design, she focused on natural dyes and sustainable materials, connecting her art to environmental consciousness. Her wall hangings bring warmth and texture to spaces while honoring traditional craft techniques. She also teaches workshops to pass these skills to others.",
+    "featuredProduct": {
+      "productId": "s14-p1",
+      "title": "Woven Wall Hanging — Sunrise",
+      "price": 175.0,
+      "artType": "Textile Art / Weaving"
+    }
+  },
+  {
+    "userId": 15,
+    "name": "William Gonzalez",
+    "artStory": "William's artistic practice exists at the intersection of digital and physical. He experiments with glitch art, databending, and analog processes, deliberately introducing errors and imperfections into his work. What began as technical experiments evolved into a unique aesthetic that questions our relationship with technology and perfection. He creates hybrid pieces that can't be easily categorized—part digital manipulation, part physical collage. His work challenges viewers to find beauty in the broken and unexpected.",
+    "featuredProduct": {
+      "productId": "s15-p1",
+      "title": "Glitch Print Series — #02",
+      "price": 78.0,
+      "artType": "Digital-Analog Hybrid / Glitch Art"
+    }
+  },
+  {
+    "userId": 16,
+    "name": "Avery Perez",
+    "artStory": "Avery believes that art should be accessible and approachable. After struggling through formal art education and feeling intimidated by the art world, they decided to create work that welcomes beginners. Their minimalist aesthetic emerged from a desire to strip away complexity and focus on foundational elements—line, form, negative space. They curate beginner-friendly supplies and create instructional content alongside their art, building a community of learners who support each other's creative journeys.",
+    "featuredProduct": {
+      "productId": "s16-p2",
+      "title": "Beginner Sketch Kit",
+      "price": 29.0,
+      "artType": "Minimalist Art / Art Education"
+    }
+  },
+  {
+    "userId": 17,
+    "name": "Evelyn Sanchez",
+    "artStory": "Evelyn's art is fueled by joy and playfulness. As an elementary school teacher, she saw how children approach creativity without fear or self-judgment, and it transformed her own practice. She began creating bright, expressive mixed-media pieces that celebrate spontaneity and experimentation. Her work resonates with both children and adults who need reminders to play and not take life too seriously. She also teaches art lessons, creating welcoming spaces where mistakes are celebrated as part of the creative process.",
+    "featuredProduct": {
+      "productId": "s17-p1",
+      "title": "Playful Faces — Mixed Media",
+      "price": 90.0,
+      "artType": "Mixed Media / Children's Art"
+    }
+  },
+  {
+    "userId": 18,
+    "name": "Logan Torres",
+    "artStory": "Logan's creative process is rooted in experimentation and texture. They discovered their love for layering and mark-making while studying printmaking, fascinated by how accidents and unpredictable processes could create compelling visual results. They now create digital texture packs and printable resources that other artists can incorporate into their work, believing that collaboration and shared resources strengthen the creative community. Their experimental prints push the boundaries between analog techniques and digital manipulation.",
+    "featuredProduct": {
+      "productId": "s18-p1",
+      "title": "Texture Pack — Organic Noise",
+      "price": 14.0,
+      "artType": "Experimental Digital Art / Texture Design"
+    }
+  }
+]

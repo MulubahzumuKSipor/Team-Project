@@ -1,0 +1,157 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Wood texture gradient -->
+    <linearGradient id="wood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b7355;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0826d;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="softShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="1"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Wooden desk background -->
+  <rect width="1200" height="800" fill="url(#wood)"/>
+  
+  <!-- Wood grain lines -->
+  <g opacity="0.15">
+    <line x1="0" y1="150" x2="1200" y2="155" stroke="#5a4a3a" stroke-width="2"/>
+    <line x1="0" y1="350" x2="1200" y2="348" stroke="#5a4a3a" stroke-width="1.5"/>
+    <line x1="0" y1="550" x2="1200" y2="553" stroke="#5a4a3a" stroke-width="2"/>
+    <line x1="0" y1="650" x2="1200" y2="647" stroke="#5a4a3a" stroke-width="1"/>
+  </g>
+  
+  <!-- Sketchbook (center) -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="150" width="400" height="500" rx="3" fill="#f8f5f0"/>
+    <!-- Spiral binding holes -->
+    <circle cx="420" cy="180" r="4" fill="#666"/>
+    <circle cx="420" cy="220" r="4" fill="#666"/>
+    <circle cx="420" cy="260" r="4" fill="#666"/>
+    <circle cx="420" cy="300" r="4" fill="#666"/>
+    <circle cx="420" cy="340" r="4" fill="#666"/>
+    <circle cx="420" cy="380" r="4" fill="#666"/>
+    <circle cx="420" cy="420" r="4" fill="#666"/>
+    <circle cx="420" cy="460" r="4" fill="#666"/>
+    <circle cx="420" cy="500" r="4" fill="#666"/>
+    <circle cx="420" cy="540" r="4" fill="#666"/>
+    <circle cx="420" cy="580" r="4" fill="#666"/>
+    <circle cx="420" cy="620" r="4" fill="#666"/>
+    
+    <!-- Sketch on page - simple eye drawing -->
+    <ellipse cx="600" cy="350" rx="60" ry="35" fill="none" stroke="#333" stroke-width="2"/>
+    <circle cx="600" cy="350" r="20" fill="none" stroke="#333" stroke-width="2"/>
+    <circle cx="600" cy="350" r="10" fill="#333"/>
+    <path d="M 540 330 Q 570 320 600 330" fill="none" stroke="#333" stroke-width="1.5"/>
+    
+    <!-- Light guidelines on paper -->
+    <line x1="480" y1="480" x2="750" y2="480" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="480" y1="510" x2="750" y2="510" stroke="#e0e0e0" stroke-width="1"/>
+    <line x1="480" y1="540" x2="750" y2="540" stroke="#e0e0e0" stroke-width="1"/>
+  </g>
+  
+  <!-- Pencils (top left) -->
+  <g filter="url(#softShadow)">
+    <!-- Pencil 1 - Yellow -->
+    <rect x="150" y="200" width="180" height="15" rx="2" fill="#f4d03f" transform="rotate(-15 240 207.5)"/>
+    <rect x="310" y="193" width="20" height="15" fill="#e8b84d" transform="rotate(-15 320 200.5)"/>
+    <polygon points="330,193 345,200.5 330,208" fill="#2c2c2c" transform="rotate(-15 337.5 200.5)"/>
+    <line x1="155" y1="207.5" x2="325" y2="207.5" stroke="#d4a829" stroke-width="1" transform="rotate(-15 240 207.5)"/>
+    
+    <!-- Pencil 2 - Red -->
+    <rect x="140" y="240" width="180" height="15" rx="2" fill="#e74c3c" transform="rotate(-25 230 247.5)"/>
+    <rect x="300" y="228" width="20" height="15" fill="#c0392b" transform="rotate(-25 310 235.5)"/>
+    <polygon points="320,228 335,235.5 320,243" fill="#2c2c2c" transform="rotate(-25 327.5 235.5)"/>
+    
+    <!-- Pencil 3 - Blue -->
+    <rect x="130" y="280" width="180" height="15" rx="2" fill="#3498db" transform="rotate(-35 220 287.5)"/>
+    <rect x="290" y="263" width="20" height="15" fill="#2980b9" transform="rotate(-35 300 270.5)"/>
+    <polygon points="310,263 325,270.5 310,278" fill="#2c2c2c" transform="rotate(-35 317.5 270.5)"/>
+  </g>
+  
+  <!-- Eraser (top right) -->
+  <g filter="url(#softShadow)">
+    <rect x="850" y="180" width="100" height="40" rx="3" fill="#ffd6e0"/>
+    <rect x="850" y="180" width="100" height="12" rx="3" fill="#ff85a2"/>
+    <text x="900" y="210" font-family="Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">ERASER</text>
+  </g>
+  
+  <!-- Pencil sharpener (right side) -->
+  <g filter="url(#softShadow)">
+    <rect x="900" y="260" width="60" height="45" rx="4" fill="#5dade2"/>
+    <circle cx="930" cy="282.5" r="12" fill="#2c3e50"/>
+    <circle cx="930" cy="282.5" r="6" fill="#34495e"/>
+    <rect x="905" y="300" width="50" height="5" rx="1" fill="#4a90c4"/>
+  </g>
+  
+  <!-- Charcoal sticks (bottom left) -->
+  <g filter="url(#softShadow)">
+    <rect x="200" y="580" width="80" height="12" rx="6" fill="#2c2c2c"/>
+    <rect x="210" y="605" width="80" height="12" rx="6" fill="#3a3a3a"/>
+    <rect x="220" y="630" width="80" height="12" rx="6" fill="#1a1a1a"/>
+  </g>
+  
+  <!-- Blending stumps (bottom) -->
+  <g filter="url(#softShadow)">
+    <polygon points="500,680 510,720 490,720" fill="#d4c5b0"/>
+    <polygon points="540,680 550,720 530,720" fill="#d4c5b0"/>
+    <polygon points="580,680 590,720 570,720" fill="#d4c5b0"/>
+  </g>
+  
+  <!-- Ruler (bottom right) -->
+  <g filter="url(#softShadow)">
+    <rect x="820" y="600" width="300" height="40" rx="2" fill="#e8e8e8" opacity="0.9"/>
+    <line x1="830" y1="620" x2="1110" y2="620" stroke="#333" stroke-width="1"/>
+    <!-- Measurement marks -->
+    <line x1="850" y1="615" x2="850" y2="625" stroke="#333" stroke-width="1.5"/>
+    <line x1="900" y1="615" x2="900" y2="625" stroke="#333" stroke-width="1.5"/>
+    <line x1="950" y1="615" x2="950" y2="625" stroke="#333" stroke-width="1.5"/>
+    <line x1="1000" y1="615" x2="1000" y2="625" stroke="#333" stroke-width="1.5"/>
+    <line x1="1050" y1="615" x2="1050" y2="625" stroke="#333" stroke-width="1.5"/>
+    <line x1="1100" y1="615" x2="1100" y2="625" stroke="#333" stroke-width="1.5"/>
+    
+    <!-- Numbers on ruler -->
+    <text x="850" y="635" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">0</text>
+    <text x="950" y="635" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">5</text>
+    <text x="1050" y="635" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">10</text>
+  </g>
+  
+  <!-- Kneaded eraser (left middle) -->
+  <g filter="url(#softShadow)">
+    <ellipse cx="180" cy="450" rx="50" ry="40" fill="#7d8994"/>
+    <ellipse cx="190" cy="445" rx="15" ry="12" fill="#5a6672" opacity="0.3"/>
+  </g>
+  
+  <!-- Kit label at top -->
+  <g>
+    <text x="600" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#2c2c2c" text-anchor="middle">BEGINNER SKETCH KIT</text>
+    <text x="600" y="110" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">Essential Drawing Tools for Artists</text>
+  </g>
+  
+  <!-- Small pencil shavings scattered -->
+  <ellipse cx="350" cy="670" rx="8" ry="3" fill="#f4d03f" opacity="0.6"/>
+  <ellipse cx="380" cy="685" rx="6" ry="2" fill="#e74c3c" opacity="0.5"/>
+  <ellipse cx="760" cy="665" rx="7" ry="3" fill="#3498db" opacity="0.6"/>
+</svg>
