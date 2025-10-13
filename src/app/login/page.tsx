@@ -1,7 +1,7 @@
 // components/LoginForm.jsx (or .tsx)
 'use client'
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import styles from "../page.module.css"; 
 
 export default function LoginForm() {
@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(''); // Clear previous errors
 
