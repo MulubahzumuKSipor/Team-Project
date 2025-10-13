@@ -3,18 +3,6 @@ import styles from "../page.module.css";
 export default function About() {
   return (
     <div>
-      <header className={styles.header}>
-        <h1 style={{ color: "var(--color-primary)", fontFamily: "'Playfair Display', serif" }}>
-          <a href="/">Handcrafted Haven</a>
-        </h1>
-        <nav className={styles.nav}>
-          <a href="/">Home</a>
-          <a href="/shop">Shop</a>
-          <a href="/sellers">Sellers</a>
-          <a href="/about">About</a>
-        </nav>
-      </header>
-
       <main style={{ maxWidth: "800px", margin: "2rem auto", padding: "0 1rem", textAlign: "center" }}>
         <h2 style={{ fontFamily: "'Playfair Display', serif", marginBottom: "1rem" }}>
           Our Story
@@ -35,13 +23,6 @@ export default function About() {
           and creativity. Together, we celebrate craftsmanship and culture.
         </p>
       </main>
-
-      <footer className={styles.footer}>
-        <p>&copy; 2025 Handcrafted Haven. All rights reserved.</p>
-        <div>
-          <a href="/about">About</a> | <a href="/sellers">Sellers</a> | <a href="/shop">Shop</a>
-        </div>
-      </footer>
     </div>
   );
 }

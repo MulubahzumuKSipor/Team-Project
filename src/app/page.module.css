@@ -57,6 +57,11 @@
 .hero h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #f0f0f0;
+}
+.dark{
+  color: brown;
+  text-align: center;
 }
 
 /* Product Grid */
@@ -112,4 +117,478 @@
   text-align: center;
   padding: 2rem;
   margin-top: 3rem;
+}
+
+
+/* page.module.css (or whichever file contains your 'styles' object) */
+
+/* --- General Layout and Containers --- */
+
+.pageContainer {
+  /* Mimics the original inline style but centrally */
+  max-width: 1000px; 
+  margin: 3rem auto;
+  padding: 0 1.5rem; /* Increased padding slightly for better spacing */
+}
+
+.sellerDetailContainer {
+  /* Main container, perhaps adding a subtle background or shadow */
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.sellerShopName {
+  /* Large, dominant heading for the shop name */
+  font-family: 'Playfair Display', serif; /* Use a more elegant font */
+  font-size: 2.5rem;
+  color: #5d3d00; /* Earthy, brand color */
+  margin-bottom: 0.5rem;
+}
+
+.sellerTitle {
+  /* Sub-heading for the specialty */
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* --- Content Grid: Image and Info --- */
+
+.sellerContentGrid {
+  /* Use CSS Grid for a side-by-side layout on desktop */
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Image column (300px) and Info column (rest) */
+  gap: 3rem;
+  align-items: start; /* Aligns content to the top */
+}
+
+@media (max-width: 768px) {
+  .sellerContentGrid {
+    /* Stack layout on smaller screens */
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sellerImageWrapper {
+    /* Center the image on mobile */
+    margin: 0 auto;
+  }
+}
+
+.sellerImageWrapper {
+  /* Container for the image, applying border/shadow to the wrapper */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* The `Image` component's inline style handles the inner border-radius */
+}
+
+/* --- Seller Info Details --- */
+
+.sellerInfo {
+  /* Standard padding and spacing for the text block */
+  line-height: 1.6;
+}
+
+.sellerInfo p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.sellerInfo a {
+  color: #8B5A2B;
+  text-decoration: none;
+}
+
+.sellerInfo a:hover {
+  text-decoration: underline;
+}
+
+.sectionTitle {
+  /* Styles for h3 elements: About the Artisan, Craft Focus */
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fffefe;
+  margin-top: 2rem; /* The inline style of 2rem on 'Craft Focus' will override this */
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+/* --- Call to Action (CTA) --- */
+
+.centerContent {
+  /* Wrapper for the button */
+  text-align: center;
+  margin-top: 4rem; /* More vertical space before the button */
+}
+
+.buttonPrimary {
+  /* Styling for the main action button */
+  padding: 0.8rem 2.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #A0522D; /* A rich sienna color */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.buttonPrimary:hover {
+  background-color: #8B4513; /* Darker brown on hover */
+  transform: translateY(-1px);
+}
+
+.loginButton,
+.cartButton {
+  /* Reset common button styles */
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  margin-left: 0.5rem; /* Space between buttons */
+}
+
+/* --- Login Button (Subtle Link Style) --- */
+.loginButton {
+  /* Subtle, secondary action button */
+  background-color: transparent;
+  color: #333; /* Dark text */
+  border: 1px solid transparent; /* Placeholder for hover effect */
+}
+
+.loginButton:hover {
+  /* Highlight on hover */
+  color: #8B5A2B; /* Brand color on hover */
+  background-color: #f5f5f5; /* Very light gray background */
+}
+
+/* --- Cart Button (Primary Action/Icon Style) --- */
+.cartButton {
+  /* Prominent, primary call-to-action */
+  background-color: #8B5A2B; /* Primary brand color */
+  color: #ffffff;
+  /* Optional: Make it slightly wider/more padded if an icon is used */
+  padding: 0.5rem 1.25rem; 
+}
+
+.cartButton:hover {
+  /* Darker color on hover */
+  background-color: #6a4421;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* components/LoginForm.module.css */
+
+/* --- Container and Title --- */
+
+.loginContainer {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0f0f0;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+/* --- Form and Inputs --- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding is inside the element's total width */
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: #8B5A2B; /* Primary color focus */
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.2);
+}
+
+/* --- Buttons and Error --- */
+
+.submitButton {
+  padding: 0.8rem 1.5rem;
+  background-color: #8B5A2B;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #6a4421;
+}
+
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #dc3545; /* Red color for errors */
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* --- Footer Links --- */
+
+.footerLinks {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.footerLinks a {
+  color: #8B5A2B;
+  text-decoration: none;
+}
+
+.footerLinks a:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 0.75rem;
+  color: #aaa;
+}
+
+/* components/Cart.module.css */
+
+.cartContainer {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Empty Cart State --- */
+.emptyCart {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.continueShoppingButton {
+    background-color: #A0522D; /* Primary brand color */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    transition: background-color 0.2s;
+}
+
+.continueShoppingButton:hover {
+    background-color: #8B4513;
+}
+
+/* --- Cart Content Layout (Desktop) --- */
+.cartContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2/3 for items, 1/3 for summary */
+  gap: 3rem;
+}
+
+@media (max-width: 900px) {
+  .cartContent {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+}
+
+/* --- Cart Item List --- */
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cartItem:last-child {
+    border-bottom: none;
+}
+
+.itemName {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #333;
+}
+
+.itemPrice {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.itemControls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.itemTotal {
+  font-weight: 700;
+  color: #8B5A2B;
+  min-width: 80px; /* Ensure total column alignment */
+  text-align: right;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.qtyButton {
+  background-color: #f7f7f7;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.qtyButton:hover {
+  background-color: #e0e0e0;
+}
+
+.qtyInput {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-size: 1rem;
+}
+
+/* --- Cart Summary Box --- */
+
+.summaryBox {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  height: fit-content; /* Only take up necessary height */
+}
+
+.summaryTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ddd;
+}
+
+.summaryLine {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.grandTotal {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.checkoutButton {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  background-color: #8B5A2B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkoutButton:hover {
+  background-color: #6a4421;
+}
+
+/* Responsive adjustments for item controls */
+@media (max-width: 600px) {
+  .cartItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .itemControls {
+    margin-top: 1rem;
+    gap: 1.5rem;
+    width: 100%; /* Full width for controls */
+    justify-content: space-between;
+  }
 }

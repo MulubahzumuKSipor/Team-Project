@@ -1,55 +1,70 @@
 import styles from "../page.module.css";
+import { getData } from "../lib/data"; // Only need getData here
+import Image from "next/image";
+import Link from "next/link";
 
-export default function Shop() {
+// Define a simple interface for the data we expect from getData for the shop page
+// Assuming getData() returns objects that look like the FeaturedUser interface
+interface ShopUser {
+    user_id: number;
+    shop_name: string;
+    name: string;
+    image: string;
+    // Assuming 'price' might also exist for a shop page
+    price?: number; 
+}
+
+
+export default async function Shop() {
+  // Fetch data (assumed to be a list of products/sellers)
+  const users: ShopUser[] = await getData(); 
+
   return (
     <div>
-      <header className={styles.header}>
-        <h1 style={{ color: "var(--color-primary)", fontFamily: "'Playfair Display', serif" }}>
-          <a href="/">Handcrafted Haven</a>
-        </h1>
-        <nav className={styles.nav}>
-          <a href="/">Home</a>
-          <a href="/shop">Shop</a>
-          <a href="/sellers">Sellers</a>
-          <a href="/about">About</a>
-        </nav>
-      </header>
 
       <main style={{ maxWidth: "1200px", margin: "2rem auto", padding: "0 1rem" }}>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", marginBottom: "1rem" }}>
+        <h2 style={{ fontFamily: "'Playfair Display', serif", marginBottom: "1rem", textAlign: "center" }}>
           Shop Products
         </h2>
 
-        {/* Filter placeholder */}
-        <div style={{ marginBottom: "2rem" }}>
-          <label style={{ marginRight: "1rem" }}>Filter by Category:</label>
-          <select>
-            <option>All</option>
-            <option>Jewelry</option>
-            <option>Home Decor</option>
-            <option>Clothing</option>
-          </select>
-        </div>
-
         {/* Product grid */}
         <div className={styles.productGrid}>
-          {[40, 60, 25, 80].map((price, i) => (
-            <div key={i} className={styles.productCard}>
-              <div style={{ height: "150px", background: "#eee", borderRadius: "8px", marginBottom: "1rem" }} />
-              <h4>Product {i + 1}</h4>
-              <p>${price}.00</p>
-              <button className={styles.buttonPrimary}>Add to Cart</button>
-            </div>
-          ))}
+          {users && users.length > 0 ? (
+            // 1. Map over 'user' array (not 'users')
+            // 2. Filter out items with no valid ID to prevent /undefined links
+            users
+              .filter(user => user.user_id)
+              .map((user) => (
+                
+                // 3. Move the Link component outside the productCard div.
+                //    Use user.user_id for both the href and the key.
+                <Link 
+                  href={`/shop/${user.user_id}`} 
+                  key={user.user_id} 
+                  className={styles.productCard} // Apply card styling to the Link itself
+                >
+                  
+                  {/* FIX: Remove the redundant <div className={styles.productCard} key={user.id}> 
+                         as the Link already holds the key and styling. 
+                         You should only render the card content here. */}
+                    <Image
+                      src={user.image}
+                      width={100}
+                      height={76}
+                      alt={`Product image for ${user.name}`} // Improved alt text
+                    />
+                  
+                    <h4>{user.name}</h4>
+                    {/* Display shop name or price if available */}
+                    <h5 className={styles.productPrice}>{user.shop_name}</h5>
+                    {user.price && <p>${user.price.toFixed(2)}</p>} 
+                </Link>
+              ))
+          ) : (
+            <div>No products available at the moment.</div>
+          )}
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <p>&copy; 2025 Handcrafted Haven. All rights reserved.</p>
-        <div>
-          <a href="/about">About</a> | <a href="/sellers">Sellers</a> | <a href="/shop">Shop</a>
-        </div>
-      </footer>
     </div>
   );
 }

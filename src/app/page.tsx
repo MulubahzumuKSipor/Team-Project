@@ -1,56 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
-import { getData, getUserById, } from "./lib/data";
+import {FeaturedUser, getFeaturedProducts } from "./lib/data";
 
-
-// Define TypeScript interfaces for data
-interface Seller {
-  id: number;
-  shop_name: string;
-  // category?: string; // Uncomment if you plan to use it later
-}
-
-interface UserData {
-  id: number;
-  shop_name: string;
-  jsonb: {
-    image: string;
-  };
-  user_data: {
-    firstName: string;
-    lastName: string;
-    image: string;
-  };
-}
 
 
 export default async function Home() {
-  const data = await getData();
-  
+  const featuredProducts: FeaturedUser[] = await getFeaturedProducts();
   
   return (
     <div>
-      {/* Header */}
-      <header className={styles.header}>
-        <h1
-          style={{
-            color: "var(--color-primary)",
-            fontFamily: "'Playfair Display', serif",
-          }}
-        >
-          <a href="/">Handcrafted Haven</a>
-        </h1>
-        <nav className={styles.nav}>
-          <a href="/">Home</a>
-          <a href="/shop">Shop</a>
-          <a href="/sellers">Sellers</a>
-          <a href="/about">About</a>
-        </nav>
-        <div>
-          <button className={styles.buttonPrimary}>Login</button>
-          <button className={styles.buttonSecondary}>Cart</button>
-        </div>
-      </header>
 
       {/* Hero */}
       <section className={styles.hero}>
@@ -59,7 +18,7 @@ export default async function Home() {
           Support artisans, shop unique crafts, and find one-of-a-kind
           creations.
         </p>
-        <button className={styles.buttonPrimary}>Shop Now</button>
+        <Link href={"/shop"}><button className={styles.buttonPrimary}>Shop Now</button></Link>
       </section>
 
       {/* Featured Products Section */}
@@ -68,36 +27,31 @@ export default async function Home() {
         <p className={styles.sectionSubtitle}>
           Our best picks, crafted with love and care
         </p>
-        <a href="/productsInfo">
-          <div className={styles.productGrid}>
-            {data && data.length > 0 ? data.map((user) => (
-              <div key={user.id} className={styles.productCard}>
-                <div
-                  style={{
-                    height: "150px",
-                    background: "#eee",
-                    borderRadius: "8px",
-                    marginBottom: "1rem",
-                  }}
+        <div className={styles.productGrid}>
+          {/* Loop over the 4 randomly selected products */}
+          {featuredProducts.length > 0 ? featuredProducts.map((product) => (
+            <div key={product.user_id} className={styles.productCard}>
+              <div>
+                <Image 
+                  src={product.image} 
+                  alt={product.name} // Alt text for accessibility
+                  width={150} 
+                  height={150} 
+                  style={{ objectFit: "cover" }} // Optional styling
                 />
-                <h4>{user.shop_name}</h4>
-                <button className={styles.buttonPrimary}>Add to Cart</button>
               </div>
-            )):(
-              <p>Loading products...</p>
-            )}
-          </div>
-        </a>
-      </main>
-
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <p>&copy; 2025 Handcrafted Haven. Team #3. All rights reserved.</p>
-        <div>
-          <a href="/about">About</a> | <a href="#">Contact</a> |{" "}
-          <a href="#">Terms</a>
+              {/* Display the seller's full name (as shop name) */}
+              <h4>{product.name}</h4>
+              {/* Display the company title (as a product description) */}
+              <p className={styles.productPrice}>{product.shop_name}</p>
+              
+              <button className={styles.buttonPrimary}>Add to Cart</button>
+            </div>
+          )):(
+            <p>Loading products...</p>
+          )}
         </div>
-      </footer>
+      </main>      
     </div>
   );
 }
