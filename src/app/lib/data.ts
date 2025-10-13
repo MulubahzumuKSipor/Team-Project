@@ -22,6 +22,23 @@ export interface DetailedUser {
     country: string
 }
 
+export interface UserRaw {
+  user_id: number;
+  shop_name?: string;
+  name?: string;
+  phone?: string;
+  rating?: string;
+  featuredproduct?: Record<string, unknown> | null;
+  price?: number;
+  title?: string;
+  image?: string;
+  userimage?: string;
+  email?: string;
+  description?: string;
+  artstory?: string;
+  country?: string;
+}
+
 export async function getData() {
     // 1. Add revalidation option to the fetch call
     const fetchData = await fetch('http://localhost:5000/users', { 
@@ -39,7 +56,7 @@ export async function getData() {
     const result = await fetchData.json(); 
     
     // Assuming the API returns an array of users directly, like your initial data
-    return result as any[]; 
+    return result as Promise<UserRaw[]>; 
 }
 
 // ----------------------------------------------------------------------------------
@@ -78,7 +95,7 @@ export async function getUserById(id: string): Promise<DetailedUser> {
 
 export async function getFeaturedProducts(): Promise<FeaturedUser[]> {
     // 1. AWAIT the asynchronous call to fetch data
-    const rawUsers = await getData(); 
+    const rawUsers: UserRaw[] = await getData(); 
 
     if (rawUsers.length === 0) {
         return [];

@@ -66,7 +66,7 @@ export default async function SellerPage({ params }: SellerPageProps) {
                 </div>
                 
                 <div className={styles.centerContent}>
-                    <button className={styles.buttonPrimary}>Browse {seller.name}'s Products</button>
+                    <button className={styles.buttonPrimary}>Browse {seller.name} Products</button>
                 </div>
 
             </div>
