@@ -1,4 +1,5 @@
 // app/sellers/[id]/page.tsx
+import Link from "next/link";
 import styles from "../../page.module.css";
 import Image from "next/image";
 import { getUserById, DetailedUser } from "../../lib/data"; 
@@ -60,7 +61,7 @@ export default async function SellerPage({ params }: SellerPageProps) {
                         <h3 className={styles.sectionTitle}>About the Artisan</h3>
                         <p>Artisan Name: {seller.name}</p>
                         <p>Based in: {seller.country}</p>
-                        <p>Contact: <a href={`mailto:${seller.email}`}>{seller.email}</a></p>
+                        <p>Contact: <Link href={`mailto:${seller.email}`}>{seller.email}</Link></p>
                         
                         <h3 className={styles.sectionTitle} style={{ marginTop: '2rem' }}>Craft Focus</h3>
                         <p>Company/Studio: {seller.shop_name}</p>

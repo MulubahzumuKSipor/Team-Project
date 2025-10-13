@@ -3,6 +3,7 @@ import styles from "../../page.module.css";
 import Image from "next/image";
 import { getUserById, DetailedUser } from "../../lib/data"; 
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 // Force dynamic rendering if necessary for data freshness/user context
 export const dynamic = 'force-dynamic'; 
@@ -59,7 +60,7 @@ export default async function SellerPage({ params }: SellerPageProps) {
                         <h3 className={styles.dark} style={{color: "black", fontWeight: "bolder", fontSize:"larger"}}>{seller.name}</h3>
                         <p style={{textAlign: "right", fontStyle:"italic", fontWeight:"bolder"}}>{seller.country}</p>
                         <p>{seller.artstory}</p>
-                        <p>Contact: <a href={`mailto:${seller.email}`}>{seller.email}</a></p>
+                        <p>Contact: <Link href={`mailto:${seller.email}`}>{seller.email}</Link></p>
                         <p>Unique Insight: {seller.description}</p>
                     </div>
                 </div>

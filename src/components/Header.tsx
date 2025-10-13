@@ -12,13 +12,13 @@ export default function Header() {
             fontFamily: "'Playfair Display', serif",
           }}
         >
-          <a href="/">Handcrafted Haven</a>
+          <Link href="/">Handcrafted Haven</Link>
         </h1>
         <nav className={styles.nav}>
-          <a href="/">Home</a>
-          <a href="/shop">Shop</a>
-          <a href="/sellers">Sellers</a>
-          <a href="/about">About</a>
+          <Link href="/">Home</Link>
+          <Link href="/shop">Shop</Link>
+          <Link href="/sellers">Sellers</Link>
+          <Link href="/about">About</Link>
         </nav>
          <Link href={'/login'}><button className={styles.loginButton}>Login</button></Link>
           <Link href={'/cart'}><button className={styles.cartButton}>Cart</button></Link>

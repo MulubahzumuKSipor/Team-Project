@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className={styles.footer}>
         <p>&copy; 2025 Handcrafted Haven. Mulubahzumu Kemmeh Sipor. All rights reserved.</p>
         <div>
-          <a href="/about">About</a> | <a href="#">Contact</a> |{" "}
-          <a href="#">Terms</a>
+          <Link href="/about">About</Link> | <Link href="#">Contact</Link> |{" "}
+          <Link href="#">Terms</Link>
         </div>
       </footer>
   );

@@ -1,5 +1,6 @@
 // components/LoginForm.jsx (or .tsx)
 'use client'
+import Link from 'next/link';
 import React, { useState } from 'react';
 import styles from "../page.module.css"; 
 
@@ -90,9 +91,9 @@ export default function LoginForm() {
         </button>
 
         <div className={styles.footerLinks}>
-          <a href="#" className={styles.forgotPassword}>Forgot Password?</a>
+          <Link href="#" className={styles.forgotPassword}>Forgot Password?</Link>
           <span className={styles.separator}>|</span>
-          <a href="#" className={styles.registerLink}>Create Account</a>
+          <Link href="#" className={styles.registerLink}>Create Account</Link>
         </div>
       </form>
     </div>
