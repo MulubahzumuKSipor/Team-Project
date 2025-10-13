@@ -40,6 +40,7 @@ export interface DetailedUser {
 
 // Raw user data returned from API
 export interface UserRaw {
+    id: number;
   user_id: number;
   shop_name?: string;
   name?: string;

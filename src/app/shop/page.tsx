@@ -1,5 +1,5 @@
 import styles from "../page.module.css";
-import { getData } from "../lib/data"; // Only need getData here
+import { getData, UserRaw } from "../lib/data"; // Only need getData here
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ interface ShopUser {
 
 export default async function Shop() {
   // Fetch data (assumed to be a list of products/sellers)
-  const users: ShopUser[] = await getData(); 
+  const users: UserRaw[] = await getData(); 
 
   return (
     <div>
@@ -48,7 +48,7 @@ export default async function Shop() {
                          as the Link already holds the key and styling. 
                          You should only render the card content here. */}
                     <Image
-                      src={user.image}
+                      src={user.image ?? "/next.svg"}
                       width={100}
                       height={76}
                       alt={`Product image for ${user.name}`} // Improved alt text
@@ -57,7 +57,7 @@ export default async function Shop() {
                     <h4>{user.name}</h4>
                     {/* Display shop name or price if available */}
                     <h5 className={styles.productPrice}>{user.shop_name}</h5>
-                    {user.price && <p>${user.price.toFixed(2)}</p>} 
+                    {user.featuredproduct?.price && <p>${user.featuredproduct.price.toFixed(2)}</p>} 
                 </Link>
               ))
           ) : (
