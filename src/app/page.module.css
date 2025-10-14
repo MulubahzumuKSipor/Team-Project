@@ -1,51 +1,149 @@
+/* --- CSS VARIABLES (Define these globally or in your layout) --- */
+:root {
+  --color-primary: #3d4a52;    /* Deep Slate Blue - for text, main elements */
+  --color-secondary: #a8763e;  /* Warm Terracotta Brown - for hover effects, accents */
+  --color-accent: #f29f05;     /* Vibrant Golden Yellow - for primary buttons/CTAs */
+  --color-light-background: #f7f7f7; /* Near-white background */
+  --font-family-header: 'Playfair Display', serif;
+  --font-family-body: 'Roboto', sans-serif;
+}
+
+/* ----------------------------------------------------------------- */
+
 /* Header */
 .header {
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 1rem 2rem;
+  background: var(--color-light-background); /* Use variable for soft background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+  padding: 1rem 4vw; /* Responsive padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo/Title */
+.header h1 a {
+  /* Reset Link style */
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  /* Font Family is set inline in the component, but can be defined here if preferred */
+}
+
+/* Navigation Links */
+.nav {
+  display: flex;
+  gap: 2rem; /* Use gap for spacing instead of margin on 'a' */
 }
 
 .nav a {
-  margin: 0 1rem;
+  color: var(--color-primary);
+  text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
+  font-size: 1.05rem;
+  position: relative;
+  padding: 0.25rem 0; /* Vertical padding for hover effect */
 }
 
 .nav a:hover {
   color: var(--color-secondary);
 }
 
-/* Buttons */
+/* Underline Hover Effect for Navigation */
+.nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-secondary);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Button Group Container */
+.buttonGroup {
+    display: flex;
+    gap: 1rem; /* Space between the two buttons */
+    align-items: center;
+}
+
+/* Buttons (Updated with better styles) */
 .buttonPrimary {
   background: var(--color-accent);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px; /* More rounded/friendly aesthetic */
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s, transform 0.1s;
 }
 
 .buttonPrimary:hover {
   background: #e09c00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .buttonSecondary {
-  border: 1px solid var(--color-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border: 2px solid var(--color-primary); /* Thicker border for presence */
+  color: var(--color-primary);
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px;
   background: transparent;
   cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .buttonSecondary:hover {
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: white;
+  border-color: var(--color-primary);
 }
 
+
+/* ----------------------------------------------------------------- */
+/* Mobile/Responsive Layout */
+@media (max-width: 900px) {
+    .header {
+        flex-wrap: wrap; /* Allow header items to wrap */
+        justify-content: center; /* Center items on small screens */
+        padding: 1rem;
+    }
+
+    .nav {
+        order: 3; /* Push nav to the bottom */
+        flex-basis: 100%; /* Take full width */
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 0.75rem;
+    }
+
+    .nav a {
+        font-size: 0.9rem;
+    }
+
+    .buttonGroup {
+        order: 2; /* Position buttons next to the title on the first line */
+        margin-left: auto; /* Push buttons to the right */
+    }
+
+    .header h1 {
+        order: 1;
+    }
+}
 /* Hero */
 .hero {
   background: var(--color-secondary);
