@@ -14,17 +14,23 @@ interface SellerPageProps {
     };
 }
 
+
+
 // ------------------------------------------------------------------
 // This function will fetch the data for a single user/seller
 // ------------------------------------------------------------------
 export default async function SellerPage({ params }: SellerPageProps) {
-    const sellerId = params.id; 
+    const sellerId = Number(params.id);
+    if (isNaN(sellerId)) notFound();
 
-    let seller: DetailedUser | null;
+    const seller = await getUserById;
     
     try {
         // Fetch the detailed user data using the ID from the URL
-        seller = await getUserById(sellerId);
+        const seller = await getUserById(sellerId);
+        if (!seller) {
+        notFound();
+    }
     } catch (e) {
         console.error(`Error fetching seller data for ID ${sellerId}:`, e);
         notFound(); 

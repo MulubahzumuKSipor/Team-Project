@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styles from "../../page.module.css";
 import Image from "next/image";
-import { getUserById, DetailedUser } from "../../lib/data"; 
+import { getUserById} from "../../lib/data"; 
 import { notFound } from "next/navigation";
 
 // Force dynamic rendering if necessary for data freshness/user context
