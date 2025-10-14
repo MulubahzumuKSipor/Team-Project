@@ -22,41 +22,38 @@ export interface FeaturedUser {
   featuredproduct: FeaturedProduct;
 }
 
-export interface DetailedUser {
-  user_id: number;
-  shop_name: string;
-  name: string;
-  phone: string;
-  rating: string;
-  price: number;
-  title: string;
-  image: string;
-  userimage: string;
-  email: string;
-  description: string;
-  artstory: string;
-  country: string;
+export interface UserRaw {
+    user_id: number;
+    shop_name?: string;
+    name?: string;
+    phone?: string;
+    rating?: string;
+    image?: string;
+    userimage?: string;
+    email?: string;
+    description?: string;
+    artstory?: string;
+    country?: string;
+    featuredproduct?: {
+        title?: string;
+        price?: number;
+    };
 }
 
-// Raw user data returned from API
-export interface UserRaw {
-    id: number;
-  user_id: number;
-  shop_name?: string;
-  name?: string;
-  phone?: string;
-  rating?: string;
-  image?: string;
-  userimage?: string;
-  email?: string;
-  description?: string;
-  artstory?: string;
-  country?: string;
-  featuredproduct?: {
-    title?: string;
-    price?: number;
-    [key: string]: unknown;
-  };
+export interface DetailedUser {
+    user_id: number;
+    shop_name: string;
+    name: string;
+    phone: string;
+    rating: string;
+    price: number;
+    title: string;
+    image: string;
+    userimage: string;
+    email: string;
+    description: string;
+    artstory: string;
+    country: string;
 }
 
 // --------------------------
@@ -89,7 +86,25 @@ export async function getUserById(userId: number): Promise<UserRaw | null> {
         return null;
     }
 
-    return data as UserRaw;
+    if(!data) return null;
+
+    const detailedUser: DetailedUser = {
+        user_id: data.user_id,
+        shop_name: data.shop_name ?? 'N/A',
+        name: data.name ?? 'Unknown',
+        phone: data.phone ?? '',
+        rating: data.rating ?? '0',
+        price: data.featuredproduct?.price ?? 0,
+        title: data.featuredproduct?.title ?? 'Untitled',
+        image: data.image ?? '',
+        userimage: data.userimage ?? '',
+        email: data.email ?? '',
+        description: data.description ?? '',
+        artstory: data.artstory ?? '',
+        country: data.country ?? '',
+    };
+
+    return detailedUser;
 }
 // --------------------------
 // Fetch featured products (random 4 users)
