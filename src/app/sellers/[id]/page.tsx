@@ -23,7 +23,7 @@ export default async function SellerPage({ params }: SellerPageProps) {
     const sellerId = Number(params.id);
     if (isNaN(sellerId)) notFound();
 
-    const seller = await getUserById;
+    const seller = await getUserById(sellerId);
     
     try {
         // Fetch the detailed user data using the ID from the URL
@@ -44,16 +44,17 @@ export default async function SellerPage({ params }: SellerPageProps) {
     return (
         <main className={styles.pageContainer}> 
             <div className={styles.sellerDetailContainer}>
+
                 
                 <h2 className={styles.sellerShopName}>{seller.shop_name}</h2>
-                <p className={styles.sellerTitle}>Specialty: {seller.title}</p>
+                <p className={styles.sellerTitle}>Specialty: {seller.featuredproduct?.title}</p>
                 
                 <div className={styles.sellerContentGrid}>
                     
                     {/* Seller Image */}
                     <div className={styles.sellerImageWrapper}>
                         <Image
-                            src={seller.userimage}
+                            src={seller.userimage ?? ""}
                             alt={`Profile image for ${seller.name}`}
                             width={300}
                             height={300}
