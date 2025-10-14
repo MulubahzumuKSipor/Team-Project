@@ -46,6 +46,7 @@ export default function LoginForm(){
       const {data, error: authError} = await supabase.auth.signInWithPassword({
         email,  
         password,
+
       })
       
       // If error supabase should return a friendly message
@@ -54,7 +55,7 @@ export default function LoginForm(){
         return;
       }
 
-      router.replace("/")
+      router.refresh();
       
 
     } catch (err) {

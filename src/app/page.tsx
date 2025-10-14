@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import {FeaturedUser, getFeaturedProducts, UserRaw } from "./lib/data";
 
 
@@ -8,6 +11,16 @@ import {FeaturedUser, getFeaturedProducts, UserRaw } from "./lib/data";
 export default async function Home() {
   const featuredProducts: FeaturedUser[] = await getFeaturedProducts();
   
+  const supabase = createServerComponentClient({ cookies });
+
+  // Fetch the session on the server
+  const { data: { session } } = await supabase.auth.getSession();
+
+  if (!session) {
+    // If no session, redirect to the login page
+    redirect('/login');
+  }
+
   return (
     <div>
 
