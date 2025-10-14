@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styles from "../../page.module.css";
 import Image from "next/image";
-import { getUserById} from "../../lib/data"; 
+import { getUserById } from "../../lib/data"; 
 import { notFound } from "next/navigation";
 
 // Force dynamic rendering if necessary for data freshness/user context
@@ -60,13 +60,13 @@ export default async function SellerPage({ params }: SellerPageProps) {
                     {/* Seller Info */}
                     <div className={styles.sellerInfo}>
                         <h3 className={styles.sectionTitle}>About the Artisan</h3>
-                        <p>Artisan Name: {seller?.name}</p>
-                        <p>Based in: {seller?.country}</p>
-                        <p>Contact: <Link href={`mailto:${seller?.email}`}>{seller?.email}</Link></p>
+                        <p><b>Artisan Name:</b> {seller?.name}</p>
+                        <p><b>Based in:</b> {seller?.country}</p>
+                        <p style={{ borderBottom: '5px solid skyblue' }}>Contact: <Link href={`mailto:${seller?.email}`} >{seller?.email}</Link></p>
                         
-                        <h3 className={styles.sectionTitle} style={{ marginTop: '2rem' }}>Craft Focus</h3>
-                        <p>Company/Studio: {seller?.shop_name}</p>
-                        <p>Unique Insight: {seller?.description}</p>
+                        <h3 className={styles.sectionTitle} >Craft Focus</h3>
+                        <p><b>Company/Studio:</b> {seller?.shop_name}</p>
+                        <p><b>Unique Insight:</b> {seller?.description}</p>
                     </div>
                 </div>
                 

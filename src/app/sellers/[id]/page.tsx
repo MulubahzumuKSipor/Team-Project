@@ -42,41 +42,58 @@ export default async function SellerPage({ params }: SellerPageProps) {
     }
     
     return (
-        <main className={styles.pageContainer}> 
-            <div className={styles.sellerDetailContainer}>
+         <main className={styles.pageContainer}>
+      <div className={styles.sellerDetailContainer}>
 
-                
-                <h2 className={styles.sellerShopName}>{seller.shop_name}</h2>
-                <p className={styles.sellerTitle}>Specialty: {seller.featuredproduct?.title}</p>
-                
-                <div className={styles.sellerContentGrid}>
-                    
-                    {/* Seller Image */}
-                    <div className={styles.sellerImageWrapper}>
-                        <Image
-                            src={seller.userimage ?? ""}
-                            alt={`Profile image for ${seller.name}`}
-                            width={300}
-                            height={300}
-                            style={{ borderRadius: '8px', objectFit: 'cover' }}
-                        />
-                    </div>
-                    {/* Seller Info */}
-                    <div className={styles.sellerInfo}>
-                        <h2 className={styles.dark} style={{borderBottom: "2px solid brown" }}>About the Artisan</h2>
-                        <h3 className={styles.dark} style={{color: "black", fontWeight: "bolder", fontSize:"larger"}}>{seller.name}</h3>
-                        <p style={{textAlign: "right", fontStyle:"italic", fontWeight:"bolder"}}>{seller.country}</p>
-                        <p>{seller.artstory}</p>
-                        <p>Contact: <Link href={`mailto:${seller.email}`}>{seller.email}</Link></p>
-                        <p>Unique Insight: {seller.description}</p>
-                    </div>
-                </div>
-                
-                <div className={styles.centerContent}>
-                    <button className={styles.buttonPrimary}>Browse {seller.name} Products</button>
-                </div>
+        {/* Shop Name */}
+        <h2 className={styles.sellerShopName}>{seller.shop_name}</h2>
 
-            </div>
-        </main>
-    );
+
+        <div className={styles.sellerContentGrid}>
+
+          {/* Seller Image */}
+          <div className={styles.sellerImageWrapper}>
+            <Image
+              src={seller.userimage ?? ""}
+              alt={`Profile image for ${seller.name}`}
+              width={300}
+              height={300}
+              style={{ borderRadius: "8px", objectFit: "cover" }}
+            />
+          </div>
+
+          {/* Seller Info */}
+          <div className={styles.sellerInfo}>
+            <h2 className={styles.dark}>About the Artisan</h2>
+
+            {/* Name */}
+            <h3>{seller.name}</h3>
+
+            {/* Country */}
+            <p className="country">{seller.country}</p>
+
+            {/* Art Story */}
+            <p>{seller.artstory}</p>
+
+            {/* Contact */}
+            <p>
+              Contact: <Link href={`mailto:${seller.email}`}>{seller.email}</Link>
+            </p>
+
+            {/* Unique Insight */}
+            <p>Unique Insight: {seller.description}</p>
+          </div>
+
+        </div>
+
+        {/* Browse Products Button */}
+        <div className={styles.centerContent}>
+          <button className={styles.buttonPrimary}>
+            Browse {seller.name} Products
+          </button>
+        </div>
+
+      </div>
+    </main>
+  );
 }
