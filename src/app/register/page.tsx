@@ -18,7 +18,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     // --- 1. Register the User (Auth) ---
-    const { data: authData, error: authError } = await supabase.auth.signUp({
+    const { error: authError } = await supabase.auth.signUp({
       email,
       password,
       options: {

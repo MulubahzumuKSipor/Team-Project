@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import {FeaturedUser, getFeaturedProducts, UserRaw } from "./lib/data";
+import {FeaturedUser, getFeaturedProducts } from "./lib/data";
 
 
 

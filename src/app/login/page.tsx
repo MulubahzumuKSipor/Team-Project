@@ -6,11 +6,6 @@ import Link from 'next/link'
 import styles from '../page.module.css'
 import { supabase } from '../lib/supabaseClient'
 
-interface LoginResponse {
-  ok: boolean
-  message?: string
-  redirectTo?: string
-}
 
 export default function LoginForm(){
   const router = useRouter()
@@ -18,7 +13,6 @@ export default function LoginForm(){
   const [password, setPassword] = useState<string>('')
   const [error, setError] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [showPassword, setShowPassword] = useState<boolean>(false)
   const [remember, setRemember] = useState<boolean>(false)
 
   const validateEmail = (value: string) => {
@@ -43,10 +37,9 @@ export default function LoginForm(){
     setIsLoading(true)
 
     try {
-      const {data, error: authError} = await supabase.auth.signInWithPassword({
+      const {error: authError} = await supabase.auth.signInWithPassword({
         email,  
         password,
-
       })
       
       // If error supabase should return a friendly message
@@ -55,12 +48,13 @@ export default function LoginForm(){
         return;
       }
 
-      router.refresh();
+      router.push('/')
       
 
     } catch (err) {
       // Generic fallback error
       setError('An unexpected error occurred. Please try again.')
+      console.error(err)
     } finally {
       setIsLoading(false)
     }
