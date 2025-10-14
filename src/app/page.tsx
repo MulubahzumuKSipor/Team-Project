@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
-import {FeaturedUser, getFeaturedProducts } from "./lib/data";
+import {FeaturedUser, getFeaturedProducts, UserRaw } from "./lib/data";
 
 
 

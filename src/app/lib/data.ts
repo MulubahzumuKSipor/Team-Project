@@ -1,4 +1,4 @@
-// src/app/lib/data.ts
+import { supabase } from "./supabaseClient";
 
 // --------------------------
 // Environment-based API URL
@@ -62,47 +62,35 @@ export interface UserRaw {
 // --------------------------
 // Fetch all users
 // --------------------------
+// Fetch all users
 export async function getData(): Promise<UserRaw[]> {
-  const res = await fetch(`${API_BASE}/users`, {
-    next: { revalidate: 3600 },
-  });
+    const { data, error } = await supabase
+        .from('users')
+        .select('*');
 
-  if (!res.ok) {
-    console.error(`Failed to fetch users. Status: ${res.status}`);
-    throw new Error('Network response was not ok');
-  }
+    if (error) {
+        console.error('Supabase fetch error:', error);
+        throw new Error('Failed to fetch users');
+    }
 
-  return res.json() as Promise<UserRaw[]>;
+    return data as UserRaw[];
 }
 
-// --------------------------
 // Fetch single user by ID
-// --------------------------
-export async function getUserById(id: string): Promise<DetailedUser> {
-  const res = await fetch(`${API_BASE}/users/${id}`);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch user with ID ${id}`);
-  }
+export async function getUserById(userId: number): Promise<UserRaw | null> {
+    const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
 
-  const rawUser: UserRaw = await res.json();
+    if (error) {
+        console.error('Supabase fetch error:', error);
+        return null;
+    }
 
-  return {
-    user_id: rawUser.user_id,
-    shop_name: rawUser.shop_name ?? 'N/A',
-    name: rawUser.name ?? 'Unknown',
-    phone: rawUser.phone ?? '',
-    rating: rawUser.rating ?? '0',
-    price: rawUser.featuredproduct?.price ?? 0,
-    title: rawUser.featuredproduct?.title ?? 'Untitled',
-    image: rawUser.image ?? '',
-    userimage: rawUser.userimage ?? '',
-    email: rawUser.email ?? '',
-    description: rawUser.description ?? '',
-    artstory: rawUser.artstory ?? '',
-    country: rawUser.country ?? '',
-  };
+    return data as UserRaw;
 }
-
 // --------------------------
 // Fetch featured products (random 4 users)
 // --------------------------

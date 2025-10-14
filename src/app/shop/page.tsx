@@ -3,16 +3,6 @@ import { getData, UserRaw } from "../lib/data"; // Only need getData here
 import Image from "next/image";
 import Link from "next/link";
 
-// Define a simple interface for the data we expect from getData for the shop page
-// Assuming getData() returns objects that look like the FeaturedUser interface
-interface ShopUser {
-    user_id: number;
-    shop_name: string;
-    name: string;
-    image: string;
-    // Assuming 'price' might also exist for a shop page
-    price?: number; 
-}
 
 
 export default async function Shop() {

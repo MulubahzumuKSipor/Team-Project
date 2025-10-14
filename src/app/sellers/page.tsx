@@ -1,25 +1,8 @@
 import styles from "../page.module.css";
 import Image from "next/image";
-import { getData, getUserById, UserRaw} from "../lib/data";
+import { getData, UserRaw} from "../lib/data";
 import Link from "next/link";
 
-// Define TypeScript interfaces for data
-
-interface UserData {
-  user_id: number;
-  id: number;
-  shop_name: string;
-  name: string;
-  userimage: string;
-  jsonb: {
-    image: string;
-  };
-  user_data: {
-    firstName: string;
-    lastName: string;
-    image: string;
-  };
-}
 
 export default async function Sellers() {
   const user_data: UserRaw[] = await getData();
