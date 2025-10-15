@@ -2,7 +2,9 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation'; 
-import { supabase } from '@/app/lib/supabaseClient'; // Adjust path as needed
+import { supabase } from '@/app/lib/supabaseClient'; 
+import styles from '../page.module.css';
+import Link from 'next/link';
 
 export default function RegisterPage() {
   const [name, setName] = useState(''); 
@@ -39,61 +41,70 @@ export default function RegisterPage() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc' }}>
-      <h1>Create a New Account</h1>
+    <div className={styles.registerFormContainer}>
+      <h1 className={styles.registerTitle}>Create a New Account</h1>
       
-      <form onSubmit={handleRegister}>
-        {/* New Input Field for Name */}
-        <div>
-          <label htmlFor="name">Full Name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            disabled={loading}
-          />
-        </div>
-        
-        {/* Existing Email and Password Fields */}
-        <div style={{ marginTop: '15px' }}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            disabled={loading}
-          />
-        </div>
-        
-        <div style={{ marginTop: '15px' }}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            disabled={loading}
-          />
-        </div>
-        
-        <button type="submit" disabled={loading} style={{ marginTop: '20px' }}>
-          {loading ? 'Processing...' : 'Sign Up'}
-        </button>
+      <form onSubmit={handleRegister} className={styles.registerForm}>
+          
+          {/* Input Group for Name */}
+          <div className={styles.registerInputGroup}>
+              <label htmlFor="name" className={styles.registerLabel}>Full Name</label>
+              <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  disabled={loading}
+                  className={styles.registerInputField}
+              />
+          </div>
+          
+          {/* Input Group for Email */}
+          <div className={styles.registerInputGroup}>
+              <label htmlFor="email" className={styles.registerLabel}>Email</label>
+              <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={loading}
+                  className={styles.registerInputField}
+              />
+          </div>
+          
+          {/* Input Group for Password */}
+          <div className={styles.registerInputGroup}>
+              <label htmlFor="password" className={styles.registerLabel}>Password</label>
+              <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  disabled={loading}
+                  className={styles.registerInputField}
+              />
+          </div>
+          
+          <button 
+              type="submit" 
+              disabled={loading} 
+              className={styles.registerSubmitButton}
+          >
+              {loading ? 'Processing...' : 'Sign Up'}
+          </button>
       </form>
 
       {message && (
-        <p style={{ color: message.startsWith('Error') ? 'red' : 'green', marginTop: '15px' }}>
-          {message}
-        </p>
+          <p className={styles.registerMessage} style={{ color: message.startsWith('Error') ? 'red' : 'green' }}>
+              {message}
+          </p>
       )}
 
-      <p style={{ marginTop: '20px' }}>
-        Already have an account? <a href="/login">Log In here</a>
+      <p className={styles.registerLoginText} >
+          Already have an account? <Link href="/login" className={styles.registerLoginLink}>Log In here</Link>
       </p>
     </div>
   );

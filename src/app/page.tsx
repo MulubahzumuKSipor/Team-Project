@@ -1,70 +1,72 @@
+'use client'; // Client Component
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import {FeaturedUser, getFeaturedProducts } from "./lib/data";
+import { useCart } from "./lib/CartContext";
+import { FeaturedUser, getFeaturedProducts } from "./lib/data";
 
+export default function Home() {
+  const [featuredProducts, setFeaturedProducts] = useState<FeaturedUser[]>([]);
+  const { cart, addToCart } = useCart();
 
-
-export default async function Home() {
-  const featuredProducts: FeaturedUser[] = await getFeaturedProducts();
-  
-  const supabase = createServerComponentClient({ cookies });
-
-  // Fetch the session on the server
-  const { data: { session } } = await supabase.auth.getSession();
-
-  if (!session) {
-    // If no session, redirect to the login page
-    redirect('/login');
-  }
+  // Fetch featured products on client side
+  useEffect(() => {
+    async function fetchProducts() {
+      const data = await getFeaturedProducts();
+      setFeaturedProducts(data);
+    }
+    fetchProducts();
+  }, []);
 
   return (
     <div>
-
+      {/* <span>Cart ({cart.length})</span> */}
       {/* Hero */}
       <section className={styles.hero}>
         <h2>Discover Handmade Treasures</h2>
-        <p>
-          Support artisans, shop unique crafts, and find one-of-a-kind
-          creations.
-        </p>
-        <Link href={"/shop"}><button className={styles.buttonPrimary}>Shop Now</button></Link>
+        <p>Support artisans, shop unique crafts, and find one-of-a-kind creations.</p>
+        <Link href={"/shop"}>
+          <button className={styles.buttonPrimary}>Shop Now</button>
+        </Link>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Featured Products */}
       <main className={styles.productsSection}>
         <h2 className={styles.sectionTitle}>Featured Products</h2>
         <p className={styles.sectionSubtitle}>
           Our best picks, crafted with love and care
         </p>
         <div className={styles.productGrid}>
-          {/* Loop over the 4 randomly selected products */}
-          {featuredProducts.length > 0 ? featuredProducts.map((product) => (
-            <div key={product.user_id} className={styles.productCard}>
-              <div>
-                <Image 
-                  src={product.image} 
-                  alt={product.name} // Alt text for accessibility
-                  width={150} 
-                  height={150} 
-                  style={{ objectFit: "cover" }} // Optional styling
-                />
+          {featuredProducts.length > 0 ? (
+            featuredProducts.map((product) => (
+              <div key={product.user_id} className={styles.productCard}>
+                <div>
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={150}
+                    height={150}
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <h4>{product.name}</h4>
+                <p className={styles.productPrice}>{product.shop_name}</p>
+                
+                <button
+                  className={styles.buttonPrimary}
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
               </div>
-              {/* Display the seller's full name (as shop name) */}
-              <h4>{product.name}</h4>
-              {/* Display the company title (as a product description) */}
-              <p className={styles.productPrice}>{product.shop_name}</p>
-              
-              <button className={styles.buttonPrimary}>Add to Cart</button>
-            </div>
-          )):(
+            ))
+          ) : (
             <p>Loading products...</p>
           )}
         </div>
-      </main>      
+      </main>
     </div>
   );
 }

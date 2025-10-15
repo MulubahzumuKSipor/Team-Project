@@ -14,6 +14,7 @@ export interface FeaturedUser {
   shop_name: string;
   name: string;
   image: string;
+  quantity: number;
   featuredproduct: FeaturedProduct;
 }
 
@@ -29,6 +30,7 @@ export interface UserRaw {
     description?: string;
     artstory?: string;
     country?: string;
+    quantity?: number;
     featuredproduct?: {
         title?: string;
         price?: number;
@@ -123,6 +125,7 @@ export async function getFeaturedProducts(): Promise<FeaturedUser[]> {
     shop_name: `${user.shop_name ?? 'N/A'} Shop`,
     name: user.name ?? 'Unknown',
     image: user.image ?? '',
+    quantity: user.quantity ?? 0,
     featuredproduct: {
       title: user.featuredproduct?.title ?? 'Untitled',
       price: user.featuredproduct?.price ?? 0,

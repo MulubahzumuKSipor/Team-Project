@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CartProvider } from "./context/cartContext";
+import { CartProvider} from "./lib/CartContext";
+import CartToastRenderer from "@/components/CartToastRender";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
   description: "Support artisans by shopping unique handmade products",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,11 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header/>
+        
         <CartProvider>
+          <Header/>
+          <CartToastRenderer/> 
           {children}
+          <Footer/>
         </CartProvider>
-        <Footer/>
+        
       </body>
     </html>
   );

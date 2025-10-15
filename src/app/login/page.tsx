@@ -1,64 +1,60 @@
-'use client'
+// components/LoginForm.tsx
+'use client';
 
-import React, { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import styles from '../page.module.css'
-import { supabase } from '../lib/supabaseClient'
+import React, { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import styles from '../page.module.css';
+import { supabase } from '../lib/supabaseClient'; // path to client helper
 
+export default function LoginForm() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [remember, setRemember] = useState(false);
 
-export default function LoginForm(){
-  const router = useRouter()
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [error, setError] = useState<string>('')
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [remember, setRemember] = useState<boolean>(false)
+  const validateEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-  const validateEmail = (value: string) => {
-    // reasonable simple validation (not overstrict)
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-  }
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setError('')
-
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError('');
     if (!email || !password) {
-      setError('Please enter both email and password.')
-      return
+      setError('Please enter both email and password.');
+      return;
     }
-
     if (!validateEmail(email)) {
-      setError('Please enter a valid email address.')
-      return
+      setError('Please enter a valid email address.');
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
-      const {error: authError} = await supabase.auth.signInWithPassword({
-        email,  
+      // v2: signInWithPassword
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email,
         password,
-      })
-      
-      // If error supabase should return a friendly message
-      if (authError){
-        setError(authError.message || "Login failed. Please try again");
+      });
+
+      if (authError) {
+        // supabase returns friendly messages for many errors
+        setError(authError.message || 'Login failed. Please try again.');
         return;
       }
 
-      router.push('/')
-      
-
+      // data contains session and user when successful
+      // If using magic link or confirm flows, the response differs
+      // Redirect to dashboard or other protected page
+      router.replace('/');
     } catch (err) {
-      // Generic fallback error
-      setError('An unexpected error occurred. Please try again.')
-      console.error(err)
+      setError('Unexpected error — please try again.');
+      console.error(err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className={styles.loginContainer}>

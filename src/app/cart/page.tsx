@@ -1,69 +1,92 @@
-'use client'
-import React from "react";
-import styles from "../page.module.css"
-import { useCart } from "../context/cartContext"; // Import the custom hook
+'use client';
+import React from 'react';
+import styles from '../page.module.css';
+import { useCart } from '../lib/CartContext';
+import Link from 'next/link';
 
-export default function Cart(){
-  // Get state and functions from the global context
-  const { cartItems, updateQuantity } = useCart();
+export default function Cart() {
+  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
 
-  // The rest of your logic can now use the global state
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+  const subtotal = cart.reduce(
+    // FIX: Used logical OR (||) for a default value instead of invalid ternary syntax.
+    (acc, item) => acc + (item.featuredproduct?.price || 0) * (item.quantity || 0),
     0
   );
 
-  const shipping = subtotal > 0 ? 10.00 : 0.00;
+  const shipping = subtotal > 0 ? 10.0 : 0.0;
   const taxRate = 0.07;
   const tax = subtotal * taxRate;
   const total = subtotal + shipping + tax;
 
   return (
     <div className={styles.cartContainer}>
-      <h2 className={styles.title}>Your Shopping Cart ({cartItems.length} items)</h2>
+      <h2 className={styles.title}>Your Shopping Cart ({cart.length} items)</h2>
 
-      {cartItems.length === 0 ? (
+      {cart.length === 0 ? (
         <div className={styles.emptyCart}>
           <p>Your cart is empty! Time to find some handcrafted goods. 🛍️</p>
-          <button className={styles.continueShoppingButton}>Continue Shopping</button>
+          <Link href={'/shop'}><button className={styles.continueShoppingButton}>Continue Shopping</button></Link>
         </div>
       ) : (
         <div className={styles.cartContent}>
           {/* Cart Item List */}
           <div className={styles.itemList}>
-            {cartItems.map(item => (
-              <div key={item.id} className={styles.cartItem}>
-                <div className={styles.itemDetails}>
-                  <h3 className={styles.itemName}>{item.name}</h3>
-                  <p className={styles.itemPrice}>${item.price.toFixed(2)} each</p>
-                </div>
+            {cart.map((item) => {
+              const price = item.featuredproduct?.price || 0;
+              const quantity = item.quantity || 0;
 
-                <div className={styles.itemControls}>
-                  <div className={styles.quantityControl}>
-                    {/* Use the updateQuantity function from the context */}
-                    <button 
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className={styles.qtyButton}
-                    >-</button>
-                    <input 
-                      type="number" 
-                      value={item.quantity}
-                      min="1"
-                      readOnly
-                      className={styles.qtyInput}
-                    />
-                    <button 
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className={styles.qtyButton}
-                    >+</button>
+              return (
+                // POTENTIAL FIX: Changed key to a more appropriate unique identifier like item.id.
+                // If item.user_id is the only unique ID available, you can keep it, but it's not ideal.
+                <div key={item.user_id || item.user_id} className={styles.cartItem}>
+                  <div className={styles.itemDetails}>
+                    <h3 className={styles.itemName}>{item.name}</h3>
+                    <p className={styles.itemPrice}>${price.toFixed(2)} each</p>
                   </div>
-                  <p className={styles.itemTotal}>Total: **${(item.price * item.quantity).toFixed(2)}**</p>
+
+                  <div className={styles.itemControls}>
+                    <div className={styles.quantityControl}>
+                      <button
+                        onClick={() =>
+                          // FIX: Corrected ternary syntax and ensured quantity doesn't go below 1.
+                          updateQuantity(String(item.user_id), Math.max(1, quantity - 1))
+                        }
+                        className={styles.qtyButton}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        value={quantity}
+                        readOnly
+                        className={styles.qtyInput}
+                      />
+                      <button
+                        // FIX: Corrected increment logic and made ID type consistent.
+                        onClick={() => updateQuantity(String(item.user_id), quantity + 1)}
+                        className={styles.qtyButton}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p className={styles.itemTotal}>
+                      {/* FIX: Used the 'quantity' variable for calculation. */}
+                      Total: ${(price * quantity).toFixed(2)}
+                    </p>
+                    <button
+                      className={styles.removeButton}
+                      // FIX: Ensured ID is consistently a string.
+                      onClick={() => removeFromCart(String(item.user_id))}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Cart Summary (This part remains the same) */}
+          {/* Cart Summary */}
           <div className={styles.summaryBox}>
             <h3 className={styles.summaryTitle}>Order Summary</h3>
             <div className={styles.summaryLine}>
@@ -74,7 +97,7 @@ export default function Cart(){
               <span>Shipping:</span>
               <span>${shipping.toFixed(2)}</span>
             </div>
-              <div className={styles.summaryLine}>
+            <div className={styles.summaryLine}>
               <span>Tax ({(taxRate * 100).toFixed(0)}%):</span>
               <span>${tax.toFixed(2)}</span>
             </div>
@@ -82,9 +105,8 @@ export default function Cart(){
               <span>Grand Total:</span>
               <span>${total.toFixed(2)}</span>
             </div>
-            <button className={styles.checkoutButton}>
-              Proceed to Checkout
-            </button>
+            <button className={styles.checkoutButton}>Proceed to Checkout</button>
+            <button onClick={clearCart} className={styles.clearCartButton}>Clear Cart</button>
           </div>
         </div>
       )}

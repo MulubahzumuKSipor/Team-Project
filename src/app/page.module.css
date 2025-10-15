@@ -6,6 +6,12 @@
   --color-light-background: #f7f7f7; /* Near-white background */
   --font-family-header: 'Playfair Display', serif;
   --font-family-body: 'Roboto', sans-serif;
+   --primary-brown: #5C4033;
+    --soft-cream: #F7F5EE;
+    --text-dark: #1E1E1E;
+    --text-light: white;
+    --border-light: #D4C9C3;
+    --accent-gold: #B8860B;
 }
 
 /* ----------------------------------------------------------------- */
@@ -35,113 +41,209 @@
 }
 
 /* Navigation Links */
-.nav {
-  display: flex;
-  gap: 2rem; /* Use gap for spacing instead of margin on 'a' */
-}
-
-.nav a {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.05rem;
-  position: relative;
-  padding: 0.25rem 0; /* Vertical padding for hover effect */
-}
-
-.nav a:hover {
-  color: var(--color-secondary);
-}
-
-/* Underline Hover Effect for Navigation */
-.nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--color-secondary);
-  transition: width 0.3s ease-in-out;
-}
-
-.nav a:hover::after {
-  width: 100%;
-}
-
-/* Button Group Container */
-.buttonGroup {
+.mainNav {
+    /* Header/Nav Bar Container */
+    background-color: var(--primary-brown);
+    padding: 15px 30px;
     display: flex;
-    gap: 1rem; /* Space between the two buttons */
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navBrand a {
+    /* Title/Logo Link */
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    transition: color 0.2s;
+}
+
+.navBrand a:hover {
+    color: var(--accent-gold);
+}
+
+/* Navigation Links Container (Hidden on mobile by default) */
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between the links group and button group */
+}
+
+/* Desktop Navigation (The 4 main links) */
+.desktopNav {
+    display: flex;
+    gap: 25px;
+}
+
+.navItem {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s, color 0.2s;
+}
+
+.navItem:hover {
+    border-bottom-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+/* Button Group */
+.navButtonGroup {
+    display: flex;
+    gap: 15px;
     align-items: center;
 }
 
-/* Buttons (Updated with better styles) */
+/* Primary Button (Login/Logout) */
 .buttonPrimary {
-  background: var(--color-accent);
-  color: white;
-  padding: 0.6rem 1.25rem;
-  border-radius: 20px; /* More rounded/friendly aesthetic */
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background 0.2s, transform 0.1s;
+    background-color: var(--accent-gold);
+    color: var(--text-dark);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .buttonPrimary:hover {
-  background: #e09c00;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #A37309; /* Darker Gold */
 }
 
+/* Secondary Button (Cart) */
 .buttonSecondary {
-  border: 2px solid var(--color-primary); /* Thicker border for presence */
-  color: var(--color-primary);
-  padding: 0.6rem 1.25rem;
-  border-radius: 20px;
-  background: transparent;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+    background-color: var(--soft-cream);
+    color: var(--primary-brown);
+    padding: 8px 15px;
+    border: 1px solid var(--primary-brown);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .buttonSecondary:hover {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
+    background-color: #ECEAE3; /* Slightly darker cream */
 }
 
 
-/* ----------------------------------------------------------------- */
-/* Mobile/Responsive Layout */
-@media (max-width: 900px) {
-    .header {
-        flex-wrap: wrap; /* Allow header items to wrap */
-        justify-content: center; /* Center items on small screens */
-        padding: 1rem;
+/* === HAMBURGER MENU STYLES (MOBILE) === */
+
+/* Hidden by default on desktop */
+.hamburgerIcon {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-light);
+    margin: 6px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* === MEDIA QUERY FOR MOBILE LAYOUT === */
+
+@media (max-width: 768px) {
+    
+    .mainNav {
+        padding: 15px 20px;
     }
 
-    .nav {
-        order: 3; /* Push nav to the bottom */
-        flex-basis: 100%; /* Take full width */
+    /* 1. Show the Hamburger Icon */
+    .hamburgerIcon {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        gap: 1rem;
-        margin-top: 0.75rem;
+        z-index: 100;
     }
 
-    .nav a {
-        font-size: 0.9rem;
+    /* 2. Hide and position the Links/Buttons for mobile */
+    .navLinks {
+        /* Mobile menu setup: full viewport width, positioned below nav */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: auto;
+        
+        /* Layout */
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0 30px 0;
+        
+        /* Appearance and Hiding */
+        background-color: var(--primary-brown); 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        
+        /* Off-screen animation */
+        transform: translateY(-200%); 
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 
-    .buttonGroup {
-        order: 2; /* Position buttons next to the title on the first line */
-        margin-left: auto; /* Push buttons to the right */
+    /* 3. Show the Menu when 'navOpen' class is present */
+    .navOpen {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    /* Hide the desktop nav grouping on mobile */
+    .desktopNav {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 20px;
     }
 
-    .header h1 {
-        order: 1;
+    .navItem {
+        width: 90%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navButtonGroup {
+        flex-direction: column;
+        width: 90%;
+        gap: 10px;
+    }
+
+    .buttonPrimary, .buttonSecondary {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+
+    /* Hamburger Icon Animation when open */
+    .hamburgerIcon[aria-expanded="true"] .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburgerIcon[aria-expanded="true"] .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburgerIcon[aria-expanded="true"] .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
 }
 /* Hero */
@@ -548,4 +650,452 @@
 
 .separator {
   color: #9ca3af;
+}
+
+
+
+/* Color Palette */
+/* --primary-purple: #7B3EAB; */
+/* --light-purple: #B28ADF; */
+/* --off-white: #F9F9F9; */
+/* --text-dark: #333333; */
+/* --border-gray: #CCCCCC; */
+
+/* 1. Main Container and Structure */
+.registerFormContainer {
+    /* Centering the form and setting a max width */
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    
+    /* White background with a subtle shadow for depth */
+    background-color: var(--off-white, #F9F9F9);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    
+    /* Ensures relative positioning for absolute elements if needed */
+    position: relative;
+    color: var(--text-dark, #333333);
+}
+
+.registerTitle {
+    text-align: center;
+    color: var(--primary-purple, #7B3EAB);
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between input groups */
+}
+
+/* 2. Input Fields Styling */
+.registerInputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.registerLabel {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-dark, #333333);
+    font-size: 14px;
+}
+
+.registerInputField {
+    padding: 12px;
+    border: 1px solid var(--border-gray, #CCCCCC);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: white; /* Ensure input fields are clearly white */
+}
+
+.registerInputField:focus {
+    border-color: var(--primary-purple, #7B3EAB);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 62, 171, 0.2); /* Light purple glow */
+}
+
+.registerInputField:disabled {
+    background-color: #EFEFEF;
+    color: #999999;
+    cursor: not-allowed;
+}
+
+/* 3. Button Styling */
+.registerSubmitButton {
+    /* Primary Purple Color */
+    background-color: var(--primary-purple, #7B3EAB); 
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.registerSubmitButton:hover {
+    background-color: #633390; /* A slightly darker purple */
+}
+
+.registerSubmitButton:active {
+    transform: translateY(1px);
+}
+
+.registerSubmitButton:disabled {
+    background-color: var(--light-purple, #B28ADF);
+    cursor: not-allowed;
+}
+
+/* 4. Footer/Message Styling */
+.registerMessage {
+    text-align: center;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.registerLoginText {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.registerLoginLink {
+    /* Using the main accent color for the link */
+    color: var(--primary-purple, #7B3EAB);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.registerLoginLink:hover {
+    color: #633390; /* Darker purple on hover */
+    text-decoration: underline;
+}
+
+/* Color Palette */
+/* --cream-base: #F7F5EE; */
+/* --rich-brown: #5C4033; */
+/* --soft-brown: #A08375; */
+/* --text-black: #1E1E1E; */
+/* --border-light: #D4C9C3; */
+
+/* 1. Main Container and Structure */
+.cartContainer {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--cream-base, #F7F5EE); /* Soft Cream Background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: var(--text-black, #1E1E1E);
+}
+
+.title {
+    text-align: center;
+    color: var(--rich-brown, #5C4033);
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-light, #D4C9C3);
+    padding-bottom: 15px;
+}
+
+.cartContent {
+    display: flex;
+    gap: 30px;
+    /* Adjust layout for smaller screens */
+    flex-wrap: wrap; 
+}
+
+/* 2. Empty Cart State */
+.emptyCart {
+    text-align: center;
+    padding: 50px;
+    border: 1px solid var(--border-light, #D4C9C3);
+    border-radius: 8px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.emptyCart p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--soft-brown, #A08375);
+}
+
+.continueShoppingButton {
+    background-color: var(--rich-brown, #5C4033);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.continueShoppingButton:hover {
+    background-color: #4A3329;
+}
+
+/* 3. Cart Item List */
+.itemList {
+    flex: 2; /* Takes up more space */
+    min-width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    border: 1px solid var(--border-light, #D4C9C3);
+    border-radius: 8px;
+    transition: box-shadow 0.3s;
+}
+
+.cartItem:hover {
+    box-shadow: 0 2px 8px rgba(92, 64, 51, 0.1); /* Subtle brown shadow */
+}
+
+.itemDetails {
+    flex-grow: 1;
+}
+
+.itemName {
+    font-size: 18px;
+    color: var(--rich-brown, #5C4033);
+    margin-bottom: 5px;
+}
+
+.itemPrice {
+    font-size: 14px;
+    color: var(--soft-brown, #A08375);
+}
+
+.itemControls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 350px; /* Ensure controls have enough space */
+    justify-content: flex-end;
+}
+
+.quantityControl {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light, #D4C9C3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.qtyButton {
+    background-color: #F0EFEA; /* Light cream for buttons */
+    color: var(--rich-brown, #5C4033);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.qtyButton:hover {
+    background-color: var(--border-light, #D4C9C3);
+}
+
+.qtyInput {
+    width: 40px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid var(--border-light, #D4C9C3);
+    border-right: 1px solid var(--border-light, #D4C9C3);
+    padding: 8px 0;
+    font-size: 16px;
+    color: var(--text-black, #1E1E1E);
+    background-color: white;
+}
+
+.itemTotal {
+    font-weight: 600;
+    color: var(--text-black, #1E1E1E);
+    min-width: 100px;
+    text-align: right;
+}
+
+.removeButton {
+    background: none;
+    color: #CC0000; /* Standard red for removal */
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: text-decoration 0.2s;
+}
+
+.removeButton:hover {
+    text-decoration: underline;
+}
+
+/* 4. Cart Summary */
+.summaryBox {
+    flex: 1; /* Takes up less space */
+    min-width: 300px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    border: 2px solid var(--rich-brown, #5C4033); /* Strong brown border for emphasis */
+    height: fit-content;
+}
+
+.summaryTitle {
+    font-size: 22px;
+    color: var(--rich-brown, #5C4033);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--border-light, #D4C9C3);
+}
+
+.summaryLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--text-black, #1E1E1E);
+}
+
+.grandTotal {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid var(--rich-brown, #5C4033);
+}
+
+.checkoutButton {
+    width: 100%;
+    background-color: var(--rich-brown, #5C4033);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.checkoutButton:hover {
+    background-color: #4A3329;
+}
+
+.clearCartButton {
+    width: 100%;
+    background: none;
+    color: var(--soft-brown, #A08375);
+    border: 1px solid var(--soft-brown, #A08375);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.clearCartButton:hover {
+    color: var(--rich-brown, #5C4033);
+    border-color: var(--rich-brown, #5C4033);
+}
+
+/* Media Query for Mobile Layout */
+@media (max-width: 768px) {
+    .cartContent {
+        flex-direction: column;
+    }
+
+    .itemControls {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+        min-width: unset;
+        width: 100%;
+    }
+    
+    .cartItem {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .itemDetails {
+        margin-bottom: 10px;
+    }
+    
+    .itemTotal {
+        text-align: right;
+        width: 100%;
+    }
+}
+
+/* src/components/Toast.module.css */
+
+.toastContainer {
+    /* Fixed position to stay on screen */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    
+    /* Styling */
+    background-color: #388e3c; /* Green background for success */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    
+    /* Animation (fade in/slide up) */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.message {
+    margin: 0;
+    font-weight: 500;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
