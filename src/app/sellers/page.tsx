@@ -22,21 +22,6 @@ export default async function Sellers() {
         >
           Our Sellers
         </h2>
-
-        
-
-        {/* User Data Display */}
-        {/* {user_data && user_data.length > 0 ? (
-          <Image
-            src={user_data[0].jsonb.image}
-            alt={user_data[0].jsonb.shop_name}
-            width={300}
-            height={300}
-          />
-        ) : (
-          <div>No user data found</div>
-        )} */}
-
         {/* Featured Seller Display */}
          
             <div className={styles.productGrid}>

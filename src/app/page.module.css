@@ -1,48 +1,60 @@
 /* --- CSS VARIABLES (Define these globally or in your layout) --- */
 :root {
-  --color-primary: #3d4a52;    /* Deep Slate Blue - for text, main elements */
-  --color-secondary: #a8763e;  /* Warm Terracotta Brown - for hover effects, accents */
-  --color-accent: #f29f05;     /* Vibrant Golden Yellow - for primary buttons/CTAs */
-  --color-light-background: #f7f7f7; /* Near-white background */
-  --font-family-header: 'Playfair Display', serif;
-  --font-family-body: 'Roboto', sans-serif;
-   --primary-brown: #5C4033;
+    /* Color variables from the first block */
+    --color-primary: #3d4a52; /* Deep Slate Blue - for text, main elements */
+    --color-secondary: #a8763e; /* Warm Terracotta Brown - for hover effects, accents */
+    --color-accent: #f29f05; /* Vibrant Golden Yellow - for primary buttons/CTAs */
+    --color-light-background: #f7f7f7; /* Near-white background */
+    
+    /* Font families */
+    --font-family-header: 'Playfair Display', serif;
+    --font-family-body: 'Roboto', sans-serif;
+    
+    /* Color variables from the second block (nav bar) */
+    --primary-brown: #5C4033;
     --soft-cream: #F7F5EE;
     --text-dark: #1E1E1E;
     --text-light: white;
     --border-light: #D4C9C3;
     --accent-gold: #B8860B;
+
+    /* Additional color/utility variables (for context/modules) */
+    --primary-purple: #7B3EAB; 
+    --light-purple: #B28ADF;
+    --off-white: #F9F9F9;
+    --border-gray: #CCCCCC;
+    --cream-base: #F7F5EE;
+    --rich-brown: #5C4033;
+    --soft-brown: #A08375;
+    --text-black: #1E1E1E;
 }
 
 /* ----------------------------------------------------------------- */
 
-/* Header */
+/* Header (Deprecated by mainNav, kept for reference/other pages) */
 .header {
-  background: var(--color-light-background); /* Use variable for soft background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow */
-  padding: 1rem 4vw; /* Responsive padding */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    background: var(--color-light-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Logo/Title */
 .header h1 a {
-  /* Reset Link style */
-  text-decoration: none;
-  color: var(--color-primary);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  /* Font Family is set inline in the component, but can be defined here if preferred */
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
-/* Navigation Links */
+/* Main Navigation */
 .mainNav {
-    /* Header/Nav Bar Container */
     background-color: var(--primary-brown);
     padding: 15px 30px;
     display: flex;
@@ -53,7 +65,6 @@
 }
 
 .navBrand a {
-    /* Title/Logo Link */
     color: var(--text-light);
     text-decoration: none;
     font-size: 24px;
@@ -65,14 +76,12 @@
     color: var(--accent-gold);
 }
 
-/* Navigation Links Container (Hidden on mobile by default) */
 .navLinks {
     display: flex;
     align-items: center;
-    gap: 30px; /* Space between the links group and button group */
+    gap: 30px;
 }
 
-/* Desktop Navigation (The 4 main links) */
 .desktopNav {
     display: flex;
     gap: 25px;
@@ -92,16 +101,18 @@
     color: var(--accent-gold);
 }
 
-/* Button Group */
 .navButtonGroup {
     display: flex;
     gap: 15px;
     align-items: center;
 }
 
-/* Primary Button (Login/Logout) */
+/* --- Global/Reused Button Styles --- */
+
+/* Primary Button (E-commerce header/Login/Checkout) */
 .buttonPrimary {
-    background-color: var(--accent-gold);
+    /* Default style from navbar/login, overridden in dark theme and cart */
+    background-color: var(--accent-gold); /* Fallback to navbar gold */
     color: var(--text-dark);
     padding: 8px 15px;
     border: none;
@@ -112,11 +123,25 @@
     transition: background-color 0.2s;
 }
 
-.buttonPrimary:hover {
-    background-color: #A37309; /* Darker Gold */
+/* Dark Theme Override for Seller Detail */
+.sellerDetailContainer .buttonPrimary {
+    padding: 0.75rem 1.5rem;
+    background-color: #00bcd4; /* Teal accent */
+    color: #121212;
+    border-radius: 8px;
+    font-weight: 500;
 }
 
-/* Secondary Button (Cart) */
+.buttonPrimary:hover {
+    background-color: #A37309; /* Darker Gold fallback */
+}
+
+/* Dark Theme Hover Override */
+.sellerDetailContainer .buttonPrimary:hover {
+    background-color: #0097a7;
+}
+
+/* Secondary Button (Cart in E-commerce header) */
 .buttonSecondary {
     background-color: var(--soft-cream);
     color: var(--primary-brown);
@@ -130,13 +155,11 @@
 }
 
 .buttonSecondary:hover {
-    background-color: #ECEAE3; /* Slightly darker cream */
+    background-color: #ECEAE3;
 }
 
+/* --- Hamburger Menu (Mobile) --- */
 
-/* === HAMBURGER MENU STYLES (MOBILE) === */
-
-/* Hidden by default on desktop */
 .hamburgerIcon {
     display: none;
     background: none;
@@ -158,7 +181,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* === MEDIA QUERY FOR MOBILE LAYOUT === */
+/* --- Media Query for Mobile Navigation --- */
 
 @media (max-width: 768px) {
     
@@ -166,7 +189,6 @@
         padding: 15px 20px;
     }
 
-    /* 1. Show the Hamburger Icon */
     .hamburgerIcon {
         display: flex;
         flex-direction: column;
@@ -174,39 +196,29 @@
         z-index: 100;
     }
 
-    /* 2. Hide and position the Links/Buttons for mobile */
     .navLinks {
-        /* Mobile menu setup: full viewport width, positioned below nav */
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
         height: auto;
-        
-        /* Layout */
         flex-direction: column;
         align-items: center;
         padding: 20px 0 30px 0;
-        
-        /* Appearance and Hiding */
         background-color: var(--primary-brown); 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        
-        /* Off-screen animation */
         transform: translateY(-200%); 
         opacity: 0;
         pointer-events: none;
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 
-    /* 3. Show the Menu when 'navOpen' class is present */
     .navOpen {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
     }
     
-    /* Hide the desktop nav grouping on mobile */
     .desktopNav {
         flex-direction: column;
         width: 100%;
@@ -233,7 +245,6 @@
         padding: 12px;
     }
 
-    /* Hamburger Icon Animation when open */
     .hamburgerIcon[aria-expanded="true"] .bar:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
@@ -246,83 +257,81 @@
         transform: translateY(-9px) rotate(-45deg);
     }
 }
+
+/* --- Page Sections --- */
+
 /* Hero */
 .hero {
-  background: var(--color-secondary);
-  color: white;
-  text-align: center;
-  padding: 4rem 2rem;
+    background: var(--color-secondary);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
 }
 
 .hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #f0f0f0;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
 }
-.dark{
-  color: brown;
-  text-align: center;
+
+/* Section Title (General and Product Grid) - Overridden by dark theme sectionTitle */
+.sectionTitle {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-family-header, "Playfair Display", serif);
+    color: var(--color-accent);
+}
+
+.sectionSubtitle {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: #acbee6;
+    font-style: italic;
+}
+
+.productsSection {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
 }
 
 /* Product Grid */
 .productGrid {
-  max-width: 1200px;
-  margin: 2rem auto;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .productCard {
-  background: white;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .productPrice {
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  margin: 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin: 0.5rem 0;
 }
-/* Section Title */
-.sectionTitle {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  font-family: "Playfair Display", serif;
-  color: var(--color-accent);
-}
-
-.sectionSubtitle {
-  text-align: center;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  color: #acbee6;
-  font-style: italic;
-}
-
-.productsSection {
-  max-width: 1200px;
-  margin: 3rem auto;
-  padding: 0 1rem;
-}
-
 
 /* Footer */
 .footer {
-  background: var(--color-primary);
-  color: white;
-  text-align: center;
-  padding: 2rem;
-  margin-top: 3rem;
+    background: var(--color-primary);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
 }
 
 
-/* page.module.css */
+/* --- Seller Detail (Dark Theme Module) --- */
 
-/* Dark page background and center content */
 .pageContainer {
     display: flex;
     justify-content: center;
@@ -335,7 +344,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Container for seller details */
 .sellerDetailContainer {
     display: flex;
     flex-direction: column;
@@ -346,116 +354,9 @@
     padding: 2rem;
     background-color: #1e1e1e; /* slightly lighter dark card */
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* softer shadow for dark mode */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
 }
 
-/* Grid for image and info */
-.sellerContentGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-/* Seller image wrapper */
-.sellerImageWrapper {
-    display: flex;
-    justify-content: center;
-}
-
-/* Seller info */
-.sellerInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Section titles */
-.sectionTitle {
-    color: #ffffff; /* bright titles */
-    margin-bottom: 0.5rem;
-}
-
-/* Highlighted shop name */
-.sellerShopName {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00bcd4; /* teal-ish accent color */
-}
-
-/* Specialty title */
-.sellerTitle {
-    font-size: 1.1rem;
-    color: #b0bec5; /* lighter gray text */
-}
-
-/* Center buttons */
-.centerContent {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-/* Button style for dark theme */
-.buttonPrimary {
-    padding: 0.75rem 1.5rem;
-    background-color: #00bcd4; /* bright accent */
-    color: #121212; /* text dark to contrast */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
-
-.buttonPrimary:hover {
-    background-color: #0097a7;
-}
-
-/* page.module.css */
-
-/* Main page container - centers everything vertically & horizontally */
-.pageContainer {
-    display: flex;
-    justify-content: center; /* horizontal centering */
-    align-items: center;     /* vertical centering */
-    min-height: 100vh;
-    padding: 2rem;
-    box-sizing: border-box;
-    background-color: #121212; /* dark background */
-    color: #e0e0e0;            /* default light text */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Seller detail card */
-.sellerDetailContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 800px;
-    width: 100%;
-    padding: 2rem;
-    background-color: #1e1e1e; /* slightly lighter dark card */
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-}
-
-/* Shop name */
-.sellerShopName {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00bcd4; /* accent color */
-}
-
-/* Specialty */
-.sellerTitle {
-    font-size: 1.1rem;
-    color: #b0bec5;
-}
-
-/* Grid container for image + info */
 .sellerContentGrid {
     display: flex;
     flex-direction: column; /* stack vertically */
@@ -464,13 +365,11 @@
     width: 100%;
 }
 
-/* Seller image wrapper */
 .sellerImageWrapper {
     display: flex;
     justify-content: center;
 }
 
-/* Seller info */
 .sellerInfo {
     display: flex;
     flex-direction: column;
@@ -479,9 +378,22 @@
     gap: 0.5rem;
 }
 
-/* Section headings */
-.dark {
-    color: #ffffff;
+/* Dark theme section title override */
+.sellerDetailContainer .sectionTitle,
+.dark { 
+    color: #ffffff; 
+    margin-bottom: 0.5rem;
+}
+
+.sellerShopName {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00bcd4; /* teal-ish accent color */
+}
+
+.sellerTitle {
+    font-size: 1.1rem;
+    color: #b0bec5; /* lighter gray text */
 }
 
 .sellerInfo h2 {
@@ -490,27 +402,23 @@
     margin-bottom: 1rem;
 }
 
-/* Seller name */
 .sellerInfo h3 {
     font-size: 1.5rem;
     font-weight: bold;
     color: #ffffff;
 }
 
-/* Country */
 .sellerInfo p.country {
     font-style: italic;
     font-weight: bold;
     color: #b0bec5;
 }
 
-/* Art story & description */
 .sellerInfo p {
     color: #e0e0e0;
     line-height: 1.5;
 }
 
-/* Links */
 .sellerInfo a {
     color: #00bcd4;
     text-decoration: underline;
@@ -520,160 +428,138 @@
     color: #0097a7;
 }
 
-/* Centered button */
 .centerContent {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
 }
 
-/* Button styling */
-.buttonPrimary {
-    padding: 0.75rem 1.5rem;
-    background-color: #00bcd4;
-    color: #121212;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
 
-.buttonPrimary:hover {
-    background-color: #0097a7;
-}
-
-
-
-/* page.module.css */
+/* --- Login Form Module --- */
 
 .loginContainer {
-  max-width: 400px;
-  margin: 60px auto;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-family: 'Inter', sans-serif;
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Inter', sans-serif;
 }
 
-.title {
-  font-size: 28px;
-  font-weight: 700;
-  text-align: center;
-  color: #111827;
+.loginContainer .title, .cartContainer .title { /* Combine .title selectors */
+    /* Login form title style */
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: #111827;
+}
+
+.cartContainer .title {
+    /* Cart title override */
+    color: var(--rich-brown, #5C4033);
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-light, #D4C9C3);
+    padding-bottom: 15px;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .inputGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
 }
 
 .input {
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-  outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    outline: none;
 }
 
 .error {
-  color: #b91c1c;
-  background-color: #fee2e2;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 13px;
+    color: #b91c1c;
+    background-color: #fee2e2;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
 }
 
 .submitButton {
-  background-color: #4f46e5;
-  color: white;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    background-color: #4f46e5;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .submitButton:hover:not(:disabled) {
-  background-color: #4338ca;
+    background-color: #4338ca;
 }
 
 .submitButton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .footerLinks {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  font-size: 14px;
-  color: #6b7280;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #6b7280;
 }
 
 .forgotPassword,
 .registerLink {
-  color: #4f46e5;
-  text-decoration: none;
-  transition: text-decoration 0.2s;
+    color: #4f46e5;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
 }
 
 .forgotPassword:hover,
 .registerLink:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .separator {
-  color: #9ca3af;
+    color: #9ca3af;
 }
 
+/* --- Register Form Module --- */
 
-
-/* Color Palette */
-/* --primary-purple: #7B3EAB; */
-/* --light-purple: #B28ADF; */
-/* --off-white: #F9F9F9; */
-/* --text-dark: #333333; */
-/* --border-gray: #CCCCCC; */
-
-/* 1. Main Container and Structure */
 .registerFormContainer {
-    /* Centering the form and setting a max width */
     max-width: 400px;
     margin: 50px auto;
     padding: 30px;
-    
-    /* White background with a subtle shadow for depth */
     background-color: var(--off-white, #F9F9F9);
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    
-    /* Ensures relative positioning for absolute elements if needed */
     position: relative;
     color: var(--text-dark, #333333);
 }
@@ -689,10 +575,9 @@
 .registerForm {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Space between input groups */
+    gap: 15px; 
 }
 
-/* 2. Input Fields Styling */
 .registerInputGroup {
     display: flex;
     flex-direction: column;
@@ -711,13 +596,13 @@
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: white; /* Ensure input fields are clearly white */
+    background-color: white; 
 }
 
 .registerInputField:focus {
     border-color: var(--primary-purple, #7B3EAB);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(123, 62, 171, 0.2); /* Light purple glow */
+    box-shadow: 0 0 0 3px rgba(123, 62, 171, 0.2); 
 }
 
 .registerInputField:disabled {
@@ -726,9 +611,7 @@
     cursor: not-allowed;
 }
 
-/* 3. Button Styling */
 .registerSubmitButton {
-    /* Primary Purple Color */
     background-color: var(--primary-purple, #7B3EAB); 
     color: white;
     padding: 12px 20px;
@@ -742,7 +625,7 @@
 }
 
 .registerSubmitButton:hover {
-    background-color: #633390; /* A slightly darker purple */
+    background-color: #633390; 
 }
 
 .registerSubmitButton:active {
@@ -754,7 +637,6 @@
     cursor: not-allowed;
 }
 
-/* 4. Footer/Message Styling */
 .registerMessage {
     text-align: center;
     padding: 10px;
@@ -770,7 +652,6 @@
 }
 
 .registerLoginLink {
-    /* Using the main accent color for the link */
     color: var(--primary-purple, #7B3EAB);
     text-decoration: none;
     font-weight: 600;
@@ -778,46 +659,28 @@
 }
 
 .registerLoginLink:hover {
-    color: #633390; /* Darker purple on hover */
+    color: #633390; 
     text-decoration: underline;
 }
 
-/* Color Palette */
-/* --cream-base: #F7F5EE; */
-/* --rich-brown: #5C4033; */
-/* --soft-brown: #A08375; */
-/* --text-black: #1E1E1E; */
-/* --border-light: #D4C9C3; */
+/* --- Cart Module --- */
 
-/* 1. Main Container and Structure */
 .cartContainer {
     max-width: 1200px;
     margin: 40px auto;
     padding: 30px;
-    background-color: var(--cream-base, #F7F5EE); /* Soft Cream Background */
+    background-color: var(--cream-base, #F7F5EE); 
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     color: var(--text-black, #1E1E1E);
 }
 
-.title {
-    text-align: center;
-    color: var(--rich-brown, #5C4033);
-    margin-bottom: 30px;
-    font-size: 28px;
-    font-weight: 700;
-    border-bottom: 2px solid var(--border-light, #D4C9C3);
-    padding-bottom: 15px;
-}
-
 .cartContent {
     display: flex;
     gap: 30px;
-    /* Adjust layout for smaller screens */
     flex-wrap: wrap; 
 }
 
-/* 2. Empty Cart State */
 .emptyCart {
     text-align: center;
     padding: 50px;
@@ -848,9 +711,8 @@
     background-color: #4A3329;
 }
 
-/* 3. Cart Item List */
 .itemList {
-    flex: 2; /* Takes up more space */
+    flex: 2; 
     min-width: 60%;
     display: flex;
     flex-direction: column;
@@ -869,7 +731,7 @@
 }
 
 .cartItem:hover {
-    box-shadow: 0 2px 8px rgba(92, 64, 51, 0.1); /* Subtle brown shadow */
+    box-shadow: 0 2px 8px rgba(92, 64, 51, 0.1); 
 }
 
 .itemDetails {
@@ -891,7 +753,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    min-width: 350px; /* Ensure controls have enough space */
+    min-width: 350px; 
     justify-content: flex-end;
 }
 
@@ -904,7 +766,7 @@
 }
 
 .qtyButton {
-    background-color: #F0EFEA; /* Light cream for buttons */
+    background-color: #F0EFEA; 
     color: var(--rich-brown, #5C4033);
     border: none;
     padding: 8px 12px;
@@ -938,7 +800,7 @@
 
 .removeButton {
     background: none;
-    color: #CC0000; /* Standard red for removal */
+    color: #CC0000; 
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -949,14 +811,13 @@
     text-decoration: underline;
 }
 
-/* 4. Cart Summary */
 .summaryBox {
-    flex: 1; /* Takes up less space */
+    flex: 1; 
     min-width: 300px;
     padding: 25px;
     background-color: white;
     border-radius: 8px;
-    border: 2px solid var(--rich-brown, #5C4033); /* Strong brown border for emphasis */
+    border: 2px solid var(--rich-brown, #5C4033); 
     height: fit-content;
 }
 
@@ -1020,8 +881,8 @@
     border-color: var(--rich-brown, #5C4033);
 }
 
-/* Media Query for Mobile Layout */
 @media (max-width: 768px) {
+    /* Cart Mobile Overrides */
     .cartContent {
         flex-direction: column;
     }
@@ -1049,28 +910,21 @@
     }
 }
 
-/* src/components/Toast.module.css */
+/* --- Toast Notification Module --- */
 
 .toastContainer {
-    /* Fixed position to stay on screen */
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
-    
-    /* Styling */
     background-color: #388e3c; /* Green background for success */
     color: white;
     padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    
-    /* Layout */
     display: flex;
     align-items: center;
     gap: 15px;
-    
-    /* Animation (fade in/slide up) */
     animation: fadeIn 0.3s ease-out;
 }
 
