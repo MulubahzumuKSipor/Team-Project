@@ -118,7 +118,7 @@ export default function Shop() {
                     alt={`Product image for ${user.name}`}
                   />
                   <h4>{user.name}</h4>
-                  <h5 className={styles.productPrice}>{user.shop_name}</h5>
+                  <h5 className={styles.productPrice} style={{color: "black"}}>{user.shop_name}</h5>
                 </Link>
                   {user.featuredproduct?.price && <p>${user.featuredproduct.price.toFixed(2)}</p>}
                   <button className={styles.buttonPrimary} onClick={() => addToCart(user)}>Add to Cart</button>
